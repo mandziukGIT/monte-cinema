@@ -7,14 +7,13 @@
       Best cinema out of this world!
     </p>
     <button>Book a ticket</button>
-    <router-link to='/'>See movies</router-link>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'HomeView',
+  name: 'HomePage',
 }
 </script>
 

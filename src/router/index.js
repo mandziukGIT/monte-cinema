@@ -1,14 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomePage from '../pages/HomePage.vue'
+import PublicRoutes from './public'
+import ClientRoutes from './client'
+import EmployeeRoutes from './employee'
+import NotFoundPage from '@/pages/error/NotFoundPage'
 
 Vue.use(VueRouter)
 
 const routes = [
+  ...PublicRoutes,
+  ...ClientRoutes,
+  ...EmployeeRoutes,
   {
-    path: '/',
-    name: 'home',
-    component: HomePage
+    path: "*",
+    component: NotFoundPage
   }
 ]
 
