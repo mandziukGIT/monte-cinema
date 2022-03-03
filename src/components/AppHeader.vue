@@ -1,7 +1,9 @@
 <template>
     <header class="app-header">
         <div class="app-header__item">
-            <img @click="homepageRedirect" src="@/assets/images/logo.svg" alt="monterail logo"/> 
+            <router-link :to="{name: 'home'}">
+                <img src="@/assets/images/logo.svg" alt="monterail logo"/>
+            </router-link>
         </div>
         <div class="app-header__item desktop">
             <nav class="navbar">
@@ -32,16 +34,6 @@
         </div>
     </header>
 </template>
-
-<script>
-export default {
-    methods: {
-        homepageRedirect() {
-            this.$router.currentRoute.name != "home" ? this.$router.push({name: "home"}) : ''
-        }
-    }
-}
-</script>
 
 <style lang="scss" scoped>
     $underline-indicator-gap: 10.85px;
@@ -84,14 +76,14 @@ export default {
                 height: 3px;
                 width: 0;
                 background-color: $color-cherry-red;
-                @include fade-transition;
+                @include expand-transition;
             }
             &:hover {
                 color: $primary-text-color;
                 
                 &:after {
                     width: 100%;
-                    @include fade-transition;
+                    @include expand-transition;
                 }
             }
             

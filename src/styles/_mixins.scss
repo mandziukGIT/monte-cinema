@@ -1,3 +1,9 @@
   @mixin fade-transition {
-    transition: all 0.3s ease-in-out;
+    transition-property: color, background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
+
+  @mixin expand-transition {
+    transition: width 0.3s ease-in-out;
   }

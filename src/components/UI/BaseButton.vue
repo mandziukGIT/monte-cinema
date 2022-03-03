@@ -39,7 +39,7 @@ export default {
   color: $color-cherry-red;
   border-radius: 64px;
   border: 2px solid transparent;
-  padding: 0.8rem 2rem;
+  padding: 0.8em 2em;
   &--primary{
       background-color: $btn-primary-color;
       border: 2px solid $btn-primary-color;
