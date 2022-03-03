@@ -5,19 +5,24 @@
         </div>
         <div class="app-header__item desktop">
             <nav class="navbar">
-                <router-link to='/' class="navbar__link">
+                <router-link :to="{ name: 'movies' }" class="navbar__link">
                     Movies
                 </router-link>
-                <router-link to='/' class="navbar__link">
+                <router-link :to="{ name: 'screenings' }" class="navbar__link">
                     Screenings
                 </router-link>
-                <router-link to='/' class="navbar__link">
+                <router-link :to="{ name: 'contact' }" class="navbar__link">
                     Contact&nbsp;us
                 </router-link>
             </nav>
             <div>
-                <base-button>Register</base-button>
-                <base-button buttonType="primary">Login</base-button>
+                <router-link :to="{ name:'register' }">
+                    <base-button >Register</base-button>
+                </router-link>
+                <router-link :to="{ name:'login' }">
+                    <base-button buttonType="primary">Login</base-button>
+                </router-link>
+                
             </div>
         </div> 
         <div class="app-header__item hamburger">
