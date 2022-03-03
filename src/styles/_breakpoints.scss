@@ -1,0 +1,25 @@
+$max-width--sm: 550px;
+$max-width--md: 920px;
+$max-width--lg: 1264px;
+
+@mixin rwd($width) {
+  @media screen and(max-width: $width) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @include rwd($max-width--sm) {
+    @content;
+  }
+}
+@mixin md {
+  @include rwd($max-width--md) {
+    @content;
+  }
+}
+@mixin lg {
+  @include rwd($max-width--lg) {
+    @content;
+  }
+}

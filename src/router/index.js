@@ -5,6 +5,7 @@ import ClientRoutes from './client'
 import EmployeeRoutes from './employee'
 import NotFoundPage from '@/pages/error/NotFoundPage'
 
+
 Vue.use(VueRouter)
 
 const routes = [
