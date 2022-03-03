@@ -1,20 +1,9 @@
-@mixin xs {
-    @media (max-width: 600px) {
-      @content;
-    }
+  @mixin fade-transition {
+    transition-property: color, background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
   }
-  @mixin sm {
-    @media (max-width: 960px) {
-      @content;
-    }
-  }
-  @mixin md {
-    @media (min-width: 960px) {
-      @content;
-    }
-  }
-  @mixin lg {
-    @media (min-width: 1264px) {
-      @content;
-    }
+
+  @mixin expand-transition {
+    transition: width 0.3s ease-in-out;
   }
