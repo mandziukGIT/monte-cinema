@@ -16,6 +16,10 @@ export default {
         buttonType: {
             type: String,
             default: "default"
+        },
+        block: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -25,7 +29,7 @@ export default {
             }]
         },
         buttonStyles() {
-            return { "fontSize": +this.fontSize + "px"};
+            return { "fontSize": +this.fontSize + "px", "width": this.block ? '100%' : ''};
         }
         
     }

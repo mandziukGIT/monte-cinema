@@ -1,63 +1,56 @@
 <template>
     <div class="container">
-        <h1 class="page-heading">Hi there! <br> <span>Care to log in?</span></h1>
+        <h1 class="headline">Hi there! <br> <span class="headline--accent">Care to log in?</span></h1>
         <form-card>
             <template #form-controls>
-                <label class="control-label">email</label>
-                <input type="text"/>
-                <label class="control-label">password</label>
-                <input type="password"/>
+                <div class="form__controls--input">
+                    <label class="label" for="email">email</label>
+                    <input class="input__field" id="email" type="text" placeholder="Enter your email" />
+                </div>
+                <div class="form__controls--input">
+                    <label class="label" for="password">password</label>
+                    <password-input />
+                </div>
             </template>
             <template #form-actions>
-                <base-button>Register instead</base-button>
-                <base-button buttonType="primary">Log in</base-button>
+                    <base-button :block="true">Register instead</base-button>
+                    <base-button :block="true" buttonType="primary">Log in</base-button>
             </template>
         </form-card>
-        <p class="info">Did you forget your password? <router-link to="">Reset it now</router-link></p>
+        <p class="info">Did you forget your password? <router-link to="" class="info--accent">Reset it now</router-link></p>
     </div>
 </template>
 
 <script>
 import FormCard from '@/components/FormCard.vue'
+import PasswordInput from '@/components/UI/PasswordInput.vue'
 export default {
     components: {
-        FormCard
+        FormCard,
+        PasswordInput
     }
 }
 </script>
 <style lang="scss" scoped>
-
-.page-heading {
-    font-size: 80px;
-    span {
-        color: $color-jumbo;
-    }
-}
 .container {
-    font-family: 'Eczar', serif;
-    font-weight: 600;
     max-width: 600px;
     margin: 0 auto;
     margin-top: 5rem;
 }
-    input {
-        width: 100%;
-        margin-bottom: 1rem;
-        margin-top: 0.5rem;
+.form__controls {
+    &--input {
+        padding: 1rem 0;
     }
-    .control-label {
-        font-family: 'RobotoMono', monospace;
-        font-weight: 700;
-        color: $color-bittersweet;
-        text-transform: uppercase;
-        font-size: 14px;
-    }
+}
 .info {
     font-family: 'Roboto', monospace;
     font-weight: 400;
     margin-top: 3rem;
-    a {
+    &--accent {
         color: $color-cherry-red;
+    }
+    @include sm {
+      text-align: center;
     }
 }
 </style>
