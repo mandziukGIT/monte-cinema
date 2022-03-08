@@ -1,3 +1,4 @@
+$max-width--xs: 420px;
 $max-width--sm: 550px;
 $max-width--md: 920px;
 $max-width--lg: 1264px;
@@ -7,7 +8,11 @@ $max-width--lg: 1264px;
     @content;
   }
 }
-
+@mixin xs {
+  @include rwd($max-width--xs) {
+    @content;
+  }
+}
 @mixin sm {
   @include rwd($max-width--sm) {
     @content;
