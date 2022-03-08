@@ -13,6 +13,16 @@
     </form>
 </template>
 
+<script>
+export default {
+    methods: {
+        userRegister() {
+            console.log("Yeah!")
+        }
+    }
+}
+</script>
+
 <style lang="scss" scoped>
 .form {
     background-color: $color-snow-white;
@@ -20,6 +30,12 @@
     border-radius: 24px;
     max-width: 600px;
     padding: 3.5rem;
+    &__controls { 
+        & > * {
+            margin: 20px 0
+        }
+        margin-bottom: 40px
+    }
     &__actions {
         display: flex;
         justify-content: space-between;

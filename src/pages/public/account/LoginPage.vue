@@ -3,17 +3,11 @@
         <h1 class="headline">Hi there! <br> <span class="headline--accent">Care to log in?</span></h1>
         <form-card>
             <template #form-controls>
-                <div class="form__controls--input">
-                    <label class="label" for="email">email</label>
-                    <input class="input__field" id="email" type="text" placeholder="Enter your email" />
-                </div>
-                <div class="form__controls--input">
-                    <label class="label" for="password">password</label>
-                    <password-input />
-                </div>
+                <base-input v-model="email" inputLabel="email" placeholder="Enter your email"/>
+                <password-input v-model="password" />
             </template>
             <template #form-actions>
-                    <base-button :block="true">Register instead</base-button>
+                    <base-button :block="true" @click.native="$router.push({name: 'register'})">Register instead</base-button>
                     <base-button :block="true" buttonType="primary">Log in</base-button>
             </template>
         </form-card>
@@ -27,7 +21,13 @@ import PasswordInput from '@/components/UI/PasswordInput.vue'
 export default {
     components: {
         FormCard,
-        PasswordInput
+        PasswordInput,
+    },
+    data() {
+        return {
+            email: '',
+            password: ''
+        }
     }
 }
 </script>
@@ -36,11 +36,6 @@ export default {
     max-width: 600px;
     margin: 0 auto;
     margin-top: 5rem;
-}
-.form__controls {
-    &--input {
-        padding: 1rem 0;
-    }
 }
 .info {
     font-family: 'Roboto', monospace;
