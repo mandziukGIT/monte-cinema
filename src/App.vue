@@ -1,7 +1,11 @@
 <template>
   <div class="app">
-    <app-header></app-header>
-    <router-view/>
+    <div class="app__header">
+      <app-header></app-header>
+    </div>
+    <div class="app__view">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -19,8 +23,16 @@ export default {
 <style lang="scss">
 @import '@/styles/resets';
 .app {
+  &__view {
+    padding: 0 2rem;
+    @include xs {
+      padding: 0;
+    }
+  }
+  &__header {
+    padding: 2rem 2rem 0 2rem;
+  }
   max-width: 1440px;
-  padding: 2rem;
   margin: 0 auto;
 }
 </style>
