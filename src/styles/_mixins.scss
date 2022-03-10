@@ -7,3 +7,13 @@
   @mixin expand-transition {
     transition: width 0.3s ease-in-out;
   }
+
+  @mixin chip {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: $color-bittersweet;
+    background-color: $color-wisp-pink;
+    padding: 5px 10px;
+    border-radius: 24px;
+  }

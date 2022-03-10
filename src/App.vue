@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div id="app" class="app">
     <div class="app__header">
       <app-header></app-header>
     </div>
@@ -16,6 +16,9 @@ export default {
   name: "App",
   components: {
     AppHeader
+  },
+  async created() {
+    await this.$store.dispatch('fetchMovies')
   }
 }
 </script>
