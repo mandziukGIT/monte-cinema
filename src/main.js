@@ -4,6 +4,7 @@ import router from './router'
 import vSelect from 'vue-select'
 import VCalendar from 'v-calendar';
 import BaseButton from '@/components/UI/BaseButton'
+import BaseChip from '@/components/UI/BaseChip'
 import 'vue-select/dist/vue-select.css';
 
 Vue.config.productionTip = false
@@ -14,6 +15,7 @@ Vue.use(VCalendar, {
   componentPrefix: 'vc'
 });
 
+Vue.component('base-chip', BaseChip)
 Vue.component('base-button', BaseButton)
 Vue.component('v-select', vSelect)
 

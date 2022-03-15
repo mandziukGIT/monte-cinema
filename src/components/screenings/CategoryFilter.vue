@@ -14,7 +14,7 @@ export default {
             return this.genres.map(genre => ({label: genre.name, code: genre.id}));
         },
         genres() {
-            return this.$store.getters.getGenres;
+            return this.$store.getters.genres;
         }
     },
     watch: {

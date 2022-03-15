@@ -4,7 +4,9 @@
         <div class="screening__info">
             <h1 class="screening__info--title">{{ movie.title }}</h1>
             <div class="screening__info__details">
-                <p class="screening__info__details--genre">{{ movie.genre.name }}</p>
+                <base-chip class="screening__info__details--genre">
+                    {{ movie.genre.name }}
+                </base-chip>
                 <p class="screening__info__details--length">{{ movieLength }}</p>
             </div>
         </div>
@@ -18,7 +20,7 @@
 
 <script>
 import api from "@/api/FactoryRepository"
-import {getFormattedDate} from '@/helpers/dateHelper'
+import {getFormattedDate, formatMovieLength} from '@/helpers/dateHelper'
 const seances = api.get('seances')
 export default {
     props: {
@@ -35,11 +37,6 @@ export default {
         }
     },
     methods: {
-        getFormattedMovieTime(movieLength) {
-            const hours = Math.floor(movieLength / 60);  
-            const minutes = String('0' + (movieLength % 60)).slice(-2) + ' min'
-            return hours + ":" + minutes
-        },
         async getFilteredSeances() {
             const { data } = await seances.getSeancesByMovieAndDate({movieId: this.movie.id, date: this.filterBy || getFormattedDate(new Date())});
             this.movieSeances = data
@@ -53,7 +50,7 @@ export default {
     },
     computed: {
         movieLength() {
-            return this.getFormattedMovieTime(this.movie.length)
+            return formatMovieLength(this.movie.length)
         },
     },
     async created() {
@@ -101,7 +98,6 @@ export default {
             display: flex;
             &--genre {
                 margin-right: 10px;
-                @include chip
             }
             &--length {
                 align-self: flex-start;

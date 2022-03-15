@@ -35,3 +35,9 @@ export const getFormattedDate = (date) => {
     const year = date.getFullYear()
     return day + '-' + month + '-' + year
 }
+
+export const formatMovieLength = (movieLength) => {
+    const hours = Math.floor(movieLength / 60);  
+    const minutes = String('0' + (movieLength % 60)).slice(-2) + ' min'
+    return hours + ":" + minutes
+}

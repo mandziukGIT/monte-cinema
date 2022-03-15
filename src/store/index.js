@@ -22,16 +22,16 @@ export default new Vuex.Store({
     ]
   },
   getters: {
-    getMovies(state) {
+    movies(state) {
       return state.movies
     },
-    getGenres(state) {
+    genres(state) {
       return state.genres
     },
-    getThreePremieres(state) {
+    premieres(state) {
       return state.movies.slice(0, 3)
     },
-    getCategoryMovies: (state) => (payload) => {
+    genreMovies: (state) => (payload) => {
       return state.movies.filter(movie => movie.genre.id === payload.code)
     }
   },

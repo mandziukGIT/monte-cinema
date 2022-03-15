@@ -54,13 +54,13 @@ export default {
     },
     computed: {
         movies() {
-            return this.$store.getters.getMovies
+            return this.$store.getters.movies
         },
         date() {
             return !this.screeningsDate ? this.getScreeningsFormatDate(new Date()) : getDayName(this.screeningsDate, 'long') + " " + this.screeningsDate
         },
         moviesList() {
-            return !this.categoryFilter ? this.movies : this.$store.getters.getCategoryMovies(this.categoryFilter)
+            return !this.categoryFilter ? this.movies : this.$store.getters.genreMovies(this.categoryFilter)
         }
     }
 }

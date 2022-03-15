@@ -18,7 +18,7 @@ export default {
     },
     computed: {
         premieres() {
-            return this.$store.getters.getThreePremieres
+            return this.$store.getters.premieres
         }
     }
 }
