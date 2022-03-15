@@ -8,5 +8,8 @@ export default {
     },
     getSeance(seanceId) {
         return client.get(`${resource}/${seanceId}`);
+    },
+    getSeancesByMovieAndDate({movieId, date}) {
+        return client.get(`${resource}`, { params: { date, movie_id: movieId} });
     }
 }

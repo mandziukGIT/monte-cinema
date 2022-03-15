@@ -1,13 +1,21 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import vSelect from 'vue-select'
+import VCalendar from 'v-calendar';
 import BaseButton from '@/components/UI/BaseButton'
+import 'vue-select/dist/vue-select.css';
 
 Vue.config.productionTip = false
 
 import store from './store'
 
+Vue.use(VCalendar, {
+  componentPrefix: 'vc'
+});
+
 Vue.component('base-button', BaseButton)
+Vue.component('v-select', vSelect)
 
 new Vue({
   router,

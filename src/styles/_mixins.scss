@@ -12,8 +12,25 @@
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 14px;
+    line-height: 16px;
     color: $color-bittersweet;
     background-color: $color-wisp-pink;
     padding: 5px 10px;
     border-radius: 24px;
   }
+  @mixin text-label {
+    font-family: 'RobotoMono', monospace;
+    font-weight: 700;
+    color: $color-bittersweet;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 18px
+}
+@mixin overflow-scroll {
+    overflow: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
