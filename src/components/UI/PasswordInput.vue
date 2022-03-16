@@ -6,6 +6,7 @@
                 id="password" 
                 :value="value" 
                 class="password-input__input--field" 
+                :class="[{'password-input__input--error': isInvalid}]" 
                 :type="inputType" 
                 placeholder="Enter your password" 
                 @input="$emit('input', $event.target.value)" 
@@ -39,7 +40,7 @@ export default {
             isTouched: false,
             matchedCharacters: false,
             matchedDigit: false,
-            matchedLetter: false
+            matchedLetter: false,
            
         }
     },
@@ -48,7 +49,6 @@ export default {
             this.isPasswordVisible = !this.isPasswordVisible;
         },
         validatePassword() {
-            console.log("yes")
             this.isTouched = true
             this.matchedCharacters = /.{8,}/.test(this.value)
             this.matchedDigit = /(?=.*?[0-9])/.test(this.value)
@@ -71,6 +71,9 @@ export default {
         letterValidatorClass() {
             return this.isTouched && this.matchedLetter ? "text-success" : this.isTouched ? "text-danger" : '';
         },
+        isInvalid() {
+            return this.isTouched ? !(this.matchedCharacters && this.matchedDigit && this.matchedLetter) : false
+        }
     }
 
 }
@@ -85,6 +88,9 @@ export default {
         position: relative;
         &--field {
             @include base-input;
+        }
+        &--error {
+            border: 1px solid red
         }
         &--icon {
             position: absolute;

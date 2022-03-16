@@ -1,7 +1,8 @@
 <template>
     <div class="base-input">
         <label class="base-input__label" :for="$attrs.id">{{inputLabel}}</label>
-        <input class="base-input__input" v-bind="$attrs" :value="value" @input="updateValue"/>
+        {{isValid}}
+        <input class="base-input__input" v-bind="$attrs" v-on="inputListeners" :value="value" :class="[{'base-input__input--error': isValid}]"/>
     </div>
 </template>
 
@@ -15,13 +16,24 @@ export default {
         inputLabel: {
             type: String
         },
-        isInputValid: {
+        isValid: {
             type: Boolean
         }
     },
-    methods: {
-        updateValue(event) {
-            this.$emit("input", event.target.value )
+    computed: {
+        inputListeners() {
+            const vm = this
+            return Object.assign({},
+                vm.$listeners,
+                {
+                    input: function(event) {
+                        vm.$emit('input', event.target.value)
+                    },
+                    blur: function(event) {
+                        vm.$emit('blur', event.target.value)
+                    }
+                }
+            )
         }
     }
 }
@@ -35,9 +47,7 @@ export default {
         &__input {
             @include base-input;
             &--error {
-                input {
-                    border-color: red
-                }
+                border: 1px solid red
             }
         }
     }

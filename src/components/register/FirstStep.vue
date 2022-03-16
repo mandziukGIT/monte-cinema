@@ -4,8 +4,7 @@
         <form-card @submit.prevent.native="formSubmit">
             <template #form-controls>
                 <div class="form-field">
-                    <label class="form-field__label" for="password">{{inputLabel}}</label>
-                    <input class="form-field__input" :class="{'form-field__input--error': isEmailError }" v-model="email" type="text"  @blur="validateEmail"/>
+                    <base-input v-model="email" @blur="validateEmail" inputLabel="email" :isValid="isEmailError" placeholder="Enter your email"/>
                 </div>
                 <div class="form-field">
                     <password-input v-model="password" :validate="true"/>
@@ -30,15 +29,21 @@ export default {
     data() {
         return {
             email: '',
-            isEmailError: '',
+            isEmailError: false,
             password: ''
         }
     },
     methods: {
         formSubmit() {
-            
             this.$emit("firstDone", {email: this.email, password: this.password})
+        },
+        validateEmail() {
+
+            this.isEmailError = !(/^\S+@\S+\.\S+$/.test(this.email))
         }
     }
 }
 </script>
+
+<style scoped>
+</style>
