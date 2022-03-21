@@ -13,16 +13,6 @@
     </form>
 </template>
 
-<script>
-export default {
-    methods: {
-        userRegister() {
-            console.log("Yeah!")
-        }
-    }
-}
-</script>
-
 <style lang="scss" scoped>
 .form {
     background-color: $color-snow-white;

@@ -4,15 +4,19 @@
         <form-card @submit.prevent.native="formSubmit">
             <template #form-controls>
                 <div class="form-field">
-                    <base-input v-model="email" @blur="validateEmail" inputLabel="email" :isValid="isEmailError" placeholder="Enter your email"/>
+                    <base-input v-model="email" @blur="validateEmail" inputLabel="email" :isInvalid="isEmailError" placeholder="Enter your email"/>
                 </div>
                 <div class="form-field">
-                    <password-input v-model="password" :validate="true"/>
+                    <password-input v-model="password" :isFormSubmitted="isFormSubmitted" :validate="true" @validate="setPasswordValidity" />
                 </div>
             </template>
             <template #form-actions>
-                <base-button :block="true" type="button" @click.native="$router.push({name: 'login'})">Log in instead</base-button>
-                <base-button :block="true" buttonType="primary" @click="formSubmit">Next step</base-button>
+                <base-button :block="true" type="button">
+                    <router-link :to="{name: 'login'}"> 
+                        Log in instead
+                    </router-link>
+                </base-button>
+                <base-button :block="true" buttonType="primary" :disabled="!isFormValid">Next step</base-button>
             </template>
         </form-card>
     </div>
@@ -29,21 +33,34 @@ export default {
     data() {
         return {
             email: '',
+            password: '',
             isEmailError: false,
-            password: ''
+            isFormSubmitted: false,
+            isPasswordError: false,
         }
     },
     methods: {
         formSubmit() {
-            this.$emit("firstDone", {email: this.email, password: this.password})
+            this.validateForm()
+            if(this.isFormValid) {
+                this.$emit("firstDone", { email: this.email, password: this.password })
+            }
         },
         validateEmail() {
-
             this.isEmailError = !(/^\S+@\S+\.\S+$/.test(this.email))
+        },
+        validateForm() {
+            this.isFormSubmitted = true
+            this.validateEmail()
+        },
+        setPasswordValidity(event) {
+            this.isPasswordError = event
+        }
+    },
+    computed: {
+        isFormValid() {
+            return !this.isPasswordError && !this.isEmailError
         }
     }
 }
 </script>
-
-<style scoped>
-</style>

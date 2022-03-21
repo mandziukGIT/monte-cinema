@@ -9,7 +9,7 @@
                 :class="[{'password-input__input--error': isInvalid}]" 
                 :type="inputType" 
                 placeholder="Enter your password" 
-                @input="$emit('input', $event.target.value)" 
+                @input="$emit('input', $event.target.value);"
                 @blur="validatePassword"
                 autocomplete="off"
             />
@@ -31,7 +31,12 @@ export default {
             default: false
         },
         value: {
-            type: String
+            type: String,
+            default: null
+        },
+        isFormSubmitted: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -49,10 +54,12 @@ export default {
             this.isPasswordVisible = !this.isPasswordVisible;
         },
         validatePassword() {
+            if(!this.validate) return 
             this.isTouched = true
             this.matchedCharacters = /.{8,}/.test(this.value)
             this.matchedDigit = /(?=.*?[0-9])/.test(this.value)
             this.matchedLetter = /[a-z]+/.test(this.value)
+            this.$emit("validate", this.isInvalid)
         }
     },
     computed: {
@@ -72,7 +79,12 @@ export default {
             return this.isTouched && this.matchedLetter ? "text-success" : this.isTouched ? "text-danger" : '';
         },
         isInvalid() {
-            return this.isTouched ? !(this.matchedCharacters && this.matchedDigit && this.matchedLetter) : false
+            return this.isTouched && !(this.matchedCharacters && this.matchedDigit && this.matchedLetter)
+        }
+    },
+    watch: {
+        isFormSubmitted() {
+            this.validatePassword()
         }
     }
 

@@ -25,9 +25,7 @@ export default {
             this.isFirstDone = true;
         },
         registerUser(userPersonalData) {
-            const registerData = { ...this.userCredentials, ...userPersonalData}
-            console.log(registerData)
-            //endpoint call
+            console.log(userPersonalData)
         }
     }
 }

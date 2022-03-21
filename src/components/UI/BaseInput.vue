@@ -1,8 +1,7 @@
 <template>
     <div class="base-input">
         <label class="base-input__label" :for="$attrs.id">{{inputLabel}}</label>
-        {{isValid}}
-        <input class="base-input__input" v-bind="$attrs" v-on="inputListeners" :value="value" :class="[{'base-input__input--error': isValid}]"/>
+        <input class="base-input__input" v-bind="$attrs" v-on="inputListeners" :value="value" :class="[{'base-input__input--error': isInvalid}]"/>
     </div>
 </template>
 
@@ -16,7 +15,7 @@ export default {
         inputLabel: {
             type: String
         },
-        isValid: {
+        isInvalid: {
             type: Boolean
         }
     },

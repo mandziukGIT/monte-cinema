@@ -49,10 +49,17 @@ export default {
       border: 2px solid $btn-primary-color;
       color: $color-snow-white;
       @include fade-transition;
-      &:active, &:hover{
+      &:active, &:hover {
           @include fade-transition;
           background-color: transparent;
           color: $btn-primary-color;
+      }
+      &:disabled {
+          transition: none;
+          border: 2px solid $color-sweet-pink;
+          background-color: $color-sweet-pink;
+          color: $color-snow-white;
+          cursor: auto;
       }
   }
 }
