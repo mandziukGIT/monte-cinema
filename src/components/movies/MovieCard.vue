@@ -14,7 +14,8 @@ import { formatMovieLength } from "@/helpers/dateHelper"
 export default {
     props: {
         movie: {
-            type: Object
+            type: Object,
+            default: null
         }
     },
     computed: {
@@ -22,7 +23,7 @@ export default {
             return this.movie?.title
         },
         movieLength() {
-            return formatMovieLength(this.movie?.length)
+            return this.movie && formatMovieLength(this.movie.length)
         },
         moviePoster() {
             return this.movie?.poster_url

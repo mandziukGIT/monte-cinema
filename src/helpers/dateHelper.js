@@ -16,17 +16,7 @@ function increaseDays (date, days) {
   }
 
 export const getDayName = (date, length) => {
-    let validDate;
-    if(!(date instanceof Date)) {
-        const rawDate = date
-        const dateArr = rawDate.split('-')
-        validDate = new Date(dateArr[2], dateArr[1] - 1, dateArr[0])
-    } else {
-        validDate = date
-    }
-
-    const dayName = validDate.toLocaleDateString('en-US', {weekday: length})
-    return dayName.charAt(0).toUpperCase() + dayName.slice(1).trim();
+    return date.toLocaleDateString('en-US', {weekday: length})
 }
 
 export const getFormattedDate = (date) => {

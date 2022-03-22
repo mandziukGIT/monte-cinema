@@ -12,23 +12,26 @@
         </div>
         <div class="screening__seances">
             <div class="screening__seances--seance" v-for="seance in movieSeances" :key="seance.id">
-                {{ getSeanceStartHour(seance.datetime) }}
+                {{ getFormattedStartHour(seance.datetime) }}
             </div>
         </div>
      </div>
 </template>
 
 <script>
+import { formatMovieLength } from '@/helpers/dateHelper'
 import api from "@/api/FactoryRepository"
-import {getFormattedDate, formatMovieLength} from '@/helpers/dateHelper'
 const seances = api.get('seances')
+
 export default {
     props: {
         movie: {
-            type: Object
+            type: Object,
+            default: null
         },
         filterBy: {
-            type: String
+            type: Object,
+            default: null
         }
     },
     data() {
@@ -38,10 +41,10 @@ export default {
     },
     methods: {
         async getFilteredSeances() {
-            const { data } = await seances.getSeancesByMovieAndDate({movieId: this.movie.id, date: this.filterBy || getFormattedDate(new Date())});
+            const { data } = await seances.getSeances({movie_id: this.movie.id, ...this.filterBy});
             this.movieSeances = data
         },
-        getSeanceStartHour(seanceDate) {
+        getFormattedStartHour(seanceDate) {
             const date = new Date(seanceDate)
             const hour = ('0' + date.getHours()).slice(-2)
             const minutes = ( '0' + date.getMinutes()).slice(-2)
@@ -53,12 +56,12 @@ export default {
             return formatMovieLength(this.movie.length)
         },
     },
-    async created() {
-        await this.getFilteredSeances()
-    },
     watch: {
-        filterBy() {
-            this.getFilteredSeances()
+        filterBy: {
+            immediate: true,
+            handler() {
+                this.getFilteredSeances()
+            }
         }
     }
 }
@@ -114,6 +117,7 @@ export default {
         display: flex;
         align-self: end;
         padding: 0 20px;
+        overflow: auto;
         &--seance {
             padding: 10px 30px;
             margin: 0 5px;
@@ -136,7 +140,6 @@ export default {
             padding: 20px 0 0 0;
             grid-area: 2 / 1 / 2 / 3;
         }
-        @include overflow-scroll;
     }
     @include xs {
         margin: 0;

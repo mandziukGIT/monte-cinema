@@ -12,13 +12,17 @@
       <div class="contact__field">
           <img src="@/assets/images/email-icon.svg" class="contact__field--icon">
           <p class="contact__field--content">
+            <a href="mailto:hello@monterail.com">
                 hello@monterail.com
+            </a>
           </p>
       </div>
       <div class="contact__field">
           <img src="@/assets/images/phone-icon.svg" class="contact__field--icon">
           <p class="contact__field--content">
-                +48 533 600 136
+              <a href="tel:+48533-600-136">
+                  +48 533 600 136
+              </a>
           </p>
       </div>
   </div>

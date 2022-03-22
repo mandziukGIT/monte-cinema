@@ -16,12 +16,3 @@
   font-size: 14px;
   line-height: 18px
 }
-
-@mixin overflow-scroll {
-  overflow: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}

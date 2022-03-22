@@ -3,17 +3,16 @@
         <div class="date-filter__list">
             <div 
                 class="date-filter__list__option"
-                :class="[{'date-filter__list__option--active': option.date === seancesDate}]" 
-                v-for="option in filterOptions" :key="option.date" @click="setActive(option)"
+                :class="[{'date-filter__list__option--active': option.id === activeOptionId}]" 
+                v-for="option in filterOptions" :key="option.id" @click="setActiveOption(option)"
             >
                 {{option.label}}
             </div>
         </div>
         <vc-date-picker 
             class="date-filter__calendar" 
-            v-model="seancesDate" 
+            v-model="dateFilter" 
             :min-date='new Date()' 
-            :model-config="modelConfig"
             color="red"
         > 
             <template v-slot="{ togglePopover }">
@@ -25,47 +24,45 @@
     </div>
 </template>
 <script>
-import { getDaysAhead, getDayName, getFormattedDate } from '@/helpers/dateHelper'
+import { getDaysAhead, getDayName } from '@/helpers/dateHelper'
 export default {
     data() {
         return {
-            date: '',
-            modelConfig: {
-                type: 'string',
-                mask: 'DD-MM-YYYY',
-            },
+            dateFilter: null,
         }
     },
     methods: {
-        setActive(option) {
-            this.seancesDate = option.date
+        setActiveOption(option) {
+            this.activeOptionId = option.id
+            this.dateFilter = option.date
         },
         getFilterOptions() {
-           const daysAhead = getDaysAhead();
-           return daysAhead.map((day, index) => {
-               return {
+            const daysAhead = getDaysAhead();
+            const filterOptions = daysAhead.map((day, index) => {
+                return {
+                    id: day.getDate(),
                     label: !index ? "Today" : getDayName(day, "short"),
-                    date: getFormattedDate(day),   
-               }
+                    date: day
+                }
            })
-    
+            this.setActiveOption(filterOptions[0])
+            return filterOptions
         }
     },
     computed: {
         filterOptions() {
             return this.getFilterOptions()
-        },
-        seancesDate: {
-            get() {
-                return this.date || getFormattedDate(new Date())
-            },
-            set(newVal) {
-                this.date = newVal
-                this.$emit('dateChange', newVal)
-            }
+        }
+    },
+    watch: {
+        dateFilter(newVal) {
+            this.dateFilter = newVal
+            this.activeOptionId = newVal.getDate()
+            this.$emit('dateChange', newVal)
         }
     }
 }
+
 </script>
 
 <style lang="scss" scoped>
