@@ -16,5 +16,8 @@ import ContactSection from '@/components/homepage/ContactSection.vue'
 export default {
   components: { MainBanner, PremieresSection, ScreeningsSection, ContactSection },
   name: 'HomePage',
+  metaInfo: {
+    title: "Homepage",
+  },
 }
 </script>
