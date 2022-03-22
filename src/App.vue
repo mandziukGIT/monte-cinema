@@ -14,6 +14,10 @@ import AppHeader from '@/components/AppHeader.vue'
 
 export default {
   name: "App",
+  metaInfo: {
+    title: null,
+    titleTemplate: "%s | Monte Cinema",
+  },
   components: {
     AppHeader
   },
