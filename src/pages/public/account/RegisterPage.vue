@@ -9,6 +9,10 @@
 import FinalStep from '@/components/register/FinalStep.vue'
 import FirstStep from '@/components/register/FirstStep.vue'
 export default {
+    metaInfo: {
+        title: "Register",
+        titleTemplate: null
+    },
     data() {
         return {
             isFirstDone: false,

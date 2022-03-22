@@ -46,7 +46,7 @@ export default {
         &__input {
             @include base-input;
             &--error {
-                border: 1px solid red
+                border: 1px solid $color-cherry-red
             }
         }
     }

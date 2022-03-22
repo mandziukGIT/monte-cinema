@@ -27,6 +27,10 @@ export default {
         FormCard,
         PasswordInput,
     },
+    metaInfo: {
+        title: "Login",
+        titleTemplate: null
+    },
     data() {
         return {
             email: '',
