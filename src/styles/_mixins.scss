@@ -1,9 +1,18 @@
-  @mixin fade-transition {
-    transition-property: color, background-color;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
-  }
+@mixin fade-transition {
+  transition-property: color, background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
 
-  @mixin expand-transition {
-    transition: width 0.3s ease-in-out;
-  }
+@mixin expand-transition {
+  transition: width 0.3s ease-in-out;
+}
+
+@mixin text-label {
+  font-family: 'RobotoMono', monospace;
+  font-weight: 700;
+  color: $color-bittersweet;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 18px
+}

@@ -3,8 +3,8 @@ import client from "../client"
 const resource = '/seances'
 
 export default {
-    getSeances() {
-        return client.get(resource);
+    getSeances(params) {
+        return client.get(`${resource}`, { params });
     },
     getSeance(seanceId) {
         return client.get(`${resource}/${seanceId}`);

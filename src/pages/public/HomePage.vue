@@ -1,25 +1,20 @@
 <template>
-  <div>
-    <h1>
-      MonteCinema
-    </h1>
-    <p>
-      Best cinema out of this world!
-    </p>
-    <button>Book a ticket</button>
+  <div class="homepage-container">
+    <main-banner />
+    <premieres-section />
+    <screenings-section />
+    <contact-section />
   </div>
 </template>
 
 <script>
+import MainBanner from '@/components/homepage/MainBanner.vue'
+import PremieresSection from '@/components/homepage/PremieresSection.vue'
+import ScreeningsSection from '@/components/screenings/ScreeningsSection.vue'
+import ContactSection from '@/components/homepage/ContactSection.vue'
 
 export default {
+  components: { MainBanner, PremieresSection, ScreeningsSection, ContactSection },
   name: 'HomePage',
 }
 </script>
-
-<style lang="scss">
-  h1 {
-    color: $color-cherry-red;
-    font-family: "Eczar", serif;
-  }
-</style>

@@ -51,5 +51,8 @@ export default {
           color: $btn-primary-color;
       }
   }
+  @include sm {
+      width: 100%
+  }
 }
 </style>
