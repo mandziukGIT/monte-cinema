@@ -23,6 +23,7 @@ export default {
   },
   async created() {
     await this.$store.dispatch('fetchMovies')
+    await this.$store.dispatch('user/restoreUserSession')
   }
 }
 </script>

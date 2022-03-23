@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import userModule from "./modules/user"
 import api from "@/api/FactoryRepository.js"
 const moviesApi = api.get("movies")
 
@@ -33,5 +34,6 @@ export default new Vuex.Store({
     },
   },
   modules: {
+    user: userModule
   }
 })
