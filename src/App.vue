@@ -21,9 +21,9 @@ export default {
   components: {
     AppHeader
   },
-  async created() {
-    await this.$store.dispatch('fetchMovies')
-    await this.$store.dispatch('user/restoreUserSession')
+  created() {
+    this.$store.dispatch('user/restoreUserSession')
+    this.$store.dispatch('fetchMovies')
   }
 }
 </script>

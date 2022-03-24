@@ -70,7 +70,7 @@ export default {
         formSubmit() {
             this.validateForm()
             if(this.isFormValid) {
-                this.$emit("secondDone", {firstName: this.firstName, lastName: this.lastName, birthDate: this.birthDate})
+                this.$emit("secondDone", { first_name: this.firstName, last_name: this.lastName, date_of_birth: this.birthDate })
                 this.$router.push({name: 'home'})
             } 
         },

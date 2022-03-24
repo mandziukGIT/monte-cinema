@@ -2,7 +2,7 @@ import client from "../client"
 
 export default {
     getCurrentUser() {
-        return client.get()
+        return client.get('/user')
     },
     login(params) {
         return client.post('/login', { user: params });
@@ -11,6 +11,6 @@ export default {
         return client.delete('/logout')
     },
     register(params) {
-        return client.post('register', { params });
+        return client.post('/register', { user: params });
     }
 }

@@ -29,7 +29,11 @@ export default {
             this.isFirstDone = true;
         },
         registerUser(userPersonalData) {
-            console.log(userPersonalData)
+            try {
+                this.$store.dispatch('user/register', { ...userPersonalData, ...this.userCredentials})
+            } catch {
+                console.log("error")
+            }
         }
     }
 }

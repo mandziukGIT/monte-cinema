@@ -18,13 +18,17 @@
                 </router-link>
             </nav>
             <div>
-                <router-link :to="{ name:'register' }">
-                    <base-button >Register</base-button>
-                </router-link>
-                <router-link :to="{ name:'login' }">
-                    <base-button buttonType="primary">Login</base-button>
-                </router-link>
-                
+                <template v-if="!isLoggedIn">
+                    <router-link :to="{ name:'register' }">
+                        <base-button >Register</base-button>
+                    </router-link>
+                    <router-link :to="{ name:'login' }">
+                        <base-button buttonType="primary">Login</base-button>
+                    </router-link>
+                </template>
+                <template v-else>
+                    <base-button @click.native="logout" buttonType="primary">Logout</base-button>
+                </template>
             </div>
         </div> 
         <div class="app-header__item hamburger">
@@ -34,6 +38,21 @@
         </div>
     </header>
 </template>
+
+<script>
+export default {
+    methods: {
+        logout() {
+            this.$store.dispatch('user/logout')
+        }
+    },
+    computed: {
+        isLoggedIn() {
+            return this.$store.getters['user/isLoggedIn']
+        }
+    }
+}
+</script>
 
 <style lang="scss" scoped>
     $underline-indicator-gap: 10.85px;
