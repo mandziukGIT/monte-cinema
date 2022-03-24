@@ -1,5 +1,10 @@
 <template>
     <form class="form">
+        <div class="form__errors">
+            <slot name="form-errors">
+
+            </slot>
+        </div>
         <div class="form__controls">
             <slot name="form-controls">
 
