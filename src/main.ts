@@ -4,8 +4,8 @@ import router from './router'
 import VueMeta from 'vue-meta'
 import vSelect from 'vue-select'
 import VCalendar from 'v-calendar';
-import BaseButton from '@/components/UI/BaseButton'
-import BaseChip from '@/components/UI/BaseChip'
+import BaseButton from '@/components/UI/BaseButton.vue'
+import BaseChip from '@/components/UI/BaseChip.vue'
 import 'vue-select/dist/vue-select.css';
 
 Vue.config.productionTip = false

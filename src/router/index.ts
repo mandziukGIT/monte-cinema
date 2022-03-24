@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import PublicRoutes from './public'
 import ClientRoutes from './client'
 import EmployeeRoutes from './employee'
-import NotFoundPage from '@/pages/error/NotFoundPage'
+import NotFoundPage from '@/pages/error/NotFoundPage.vue'
 
 
 Vue.use(VueRouter)
