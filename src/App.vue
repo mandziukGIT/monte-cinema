@@ -55,7 +55,7 @@ export default {
     font-weight: 600;
     font-size: 80px;
     line-height: 102%;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     color: $color-tuna;
     &--accent {
       color: $color-jumbo;

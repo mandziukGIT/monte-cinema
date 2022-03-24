@@ -1,6 +1,6 @@
 <template>
     <div class="registration-container">
-       <first-step v-if="!isFirstDone" @firstDone="nextStep"></first-step>
+       <first-step v-if="!isFirstDone" :error="isRegistrationError" @firstDone="nextStep" @close="isRegistrationError = false"></first-step>
        <final-step v-else @secondDone="registerUser"></final-step>
     </div>
 </template>
@@ -16,7 +16,8 @@ export default {
     data() {
         return {
             isFirstDone: false,
-            userCredentials: null
+            userCredentials: null,
+            isRegistrationError: false
         }
     },
     components: {
@@ -28,11 +29,13 @@ export default {
             this.userCredentials = userCredentials;
             this.isFirstDone = true;
         },
-        registerUser(userPersonalData) {
+        async registerUser(userPersonalData) {
             try {
-                this.$store.dispatch('user/register', { ...userPersonalData, ...this.userCredentials})
+                await this.$store.dispatch('user/register', { ...userPersonalData, ...this.userCredentials})
+                this.$router.push({name: 'home'})
             } catch {
-                console.log("error")
+                this.isRegistrationError = true
+                this.isFirstDone = false
             }
         }
     }

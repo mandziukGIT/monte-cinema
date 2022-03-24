@@ -71,7 +71,6 @@ export default {
             this.validateForm()
             if(this.isFormValid) {
                 this.$emit("secondDone", { first_name: this.firstName, last_name: this.lastName, date_of_birth: this.birthDate })
-                this.$router.push({name: 'home'})
             } 
         },
         validateDateFormat(date) {
