@@ -36,12 +36,12 @@
 
             </template>
             <template #form-actions>
-                <base-button :block="true" type="button">
+                <base-button block type="button">
                     <router-link :to="{name: 'login'}"> 
                         Log in instead
                     </router-link>
                 </base-button>
-                <base-button :block="true" buttonType="primary" :disabled="!isFormValid">Register</base-button>
+                <base-button block type="submit" buttonStyle="primary" :disabled="!isFormValid">Register</base-button>
             </template>
         </form-card>
     </div>
@@ -70,7 +70,7 @@ export default {
         formSubmit() {
             this.validateForm()
             if(this.isFormValid) {
-                this.$emit("secondDone", {firstName: this.firstName, lastName: this.lastName, birthDate: this.birthDate})
+                this.$emit("registerSecondStepDone", {firstName: this.firstName, lastName: this.lastName, birthDate: this.birthDate})
                 this.$router.push({name: 'home'})
             } 
         },

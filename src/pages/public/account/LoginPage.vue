@@ -7,12 +7,12 @@
                 <password-input v-model="password" />
             </template>
             <template #form-actions>
-                    <base-button :block="true">
+                    <base-button block type="button">
                         <router-link :to="{name: 'register'}">
                             Register instead
                         </router-link>
                     </base-button>
-                    <base-button :block="true" buttonType="primary">Log in</base-button>
+                    <base-button block type="submit" buttonStyle="primary">Log in</base-button>
             </template>
         </form-card>
         <p class="info">Did you forget your password? <router-link to="" class="info--accent">Reset it now</router-link></p>

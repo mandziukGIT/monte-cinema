@@ -13,19 +13,19 @@ export default {
             type: String,
             default: "16"
         },
-        buttonType: {
+        buttonStyle: {
             type: String,
             default: "default"
         },
         block: {
             type: Boolean,
-            default: false
+            required: false
         }
     },
     computed: {
         buttonClasses() {
             return ['button', {
-                'button--primary': this.buttonType === 'primary'
+                'button--primary': this.buttonStyle === 'primary'
             }]
         },
         buttonStyles() {

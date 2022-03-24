@@ -19,10 +19,10 @@
             </nav>
             <div>
                 <router-link :to="{ name:'register' }">
-                    <base-button >Register</base-button>
+                    <base-button>Register</base-button>
                 </router-link>
                 <router-link :to="{ name:'login' }">
-                    <base-button buttonType="primary">Login</base-button>
+                    <base-button buttonStyle="primary">Login</base-button>
                 </router-link>
                 
             </div>

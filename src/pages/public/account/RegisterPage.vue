@@ -1,7 +1,7 @@
 <template>
     <div class="registration-container">
-       <first-step v-if="!isFirstDone" @firstDone="nextStep"></first-step>
-       <final-step v-else @secondDone="registerUser"></final-step>
+       <first-step v-if="!isFirstStepDone" @registerFirstStepDone="nextStep"></first-step>
+       <final-step v-else @registerSecondStepDone="registerUser"></final-step>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ import FirstStep from '@/components/register/FirstStep.vue'
 export default {
     data() {
         return {
-            isFirstDone: false,
+            isFirstStepDone: false,
             userCredentials: null
         }
     },
@@ -22,7 +22,7 @@ export default {
     methods: {
         nextStep(userCredentials) {
             this.userCredentials = userCredentials;
-            this.isFirstDone = true;
+            this.isFirstStepDone = true;
         },
         registerUser(userPersonalData) {
             console.log(userPersonalData)
