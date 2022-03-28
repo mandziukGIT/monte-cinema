@@ -62,5 +62,8 @@ export default {
           cursor: auto;
       }
   }
+  @include sm {
+      width: 100%
+  }
 }
 </style>
