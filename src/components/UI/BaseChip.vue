@@ -6,6 +6,12 @@
   </span>
 </template>
 
+<script>
+export default {
+  name: "Base-Chip"
+}
+</script>
+
 <style lang="scss" scoped>
 .chip {
     font-family: "Roboto", sans-serif;

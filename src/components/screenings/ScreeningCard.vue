@@ -1,5 +1,5 @@
 <template>
-    <div class="screening" v-if="!!movieSeances.length">
+    <div class="screening" data-spec="card" v-if="!!movieSeances.length">
         <img class="screening__image" :src="movie.poster_url" />
         <div class="screening__info">
             <h1 class="screening__info--title">{{ movie.title }}</h1>
@@ -41,6 +41,7 @@ export default {
     },
     methods: {
         async getFilteredSeances() {
+            if(!this.movie) return
             const { data } = await seances.getSeances({movie_id: this.movie.id, ...this.filterBy});
             this.movieSeances = data
         },

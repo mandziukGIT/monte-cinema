@@ -35,7 +35,7 @@ export default {
     font-size: 18px;
     min-width: 200px;
     height: 100%;
-
+    
     @include sm { 
         margin-left: 0;
         max-width: 100%;
