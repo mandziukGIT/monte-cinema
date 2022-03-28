@@ -1,11 +1,26 @@
-import { shallowMount } from "@vue/test-utils"
+import { mount } from "@vue/test-utils"
 import ScreeningCard from '@/components/screenings/ScreeningCard'
 
-import { getSeance, getSeances } from "@/api/resources/SeancesRepository"
-import { getMovie } from "@/api/resources/MoviesRepository"
+import { getSeances } from "@/api/resources/SeancesRepository"
 
-const getDummySeance = async () => await getSeance(1);
-const getDummyMovie = async () => await getMovie(1);
+const movie = {
+    id: 1,
+    title: "title",
+    genre: {
+        id: 1,
+        name: "genre"
+    },
+    poster_url: "poster.url",
+    length: 100,
+    release_date: "01.01.2001",
+    description: "description"
+}
+const seance = {
+    id: 1,
+    datetime: new Date,
+    movie: 1,
+    hall: 1
+}
 
 jest.mock('@/api/resources/SeancesRepository', () => {
     const originalModule = jest.requireActual('@/api/resources/SeancesRepository');
@@ -17,27 +32,27 @@ jest.mock('@/api/resources/SeancesRepository', () => {
     };
 })
 
-const createComponent = (options) => shallowMount(ScreeningCard, options);
+const createComponent = (options) =>  mount(ScreeningCard, options);
 
 describe("screening card component", () => {
 
-    it("invalid prop fails", async () => {
+    it("hide if invalid props", async () => {
         const wrapper = createComponent()
         expect(wrapper.find('screening').exists()).toBeFalsy()
     })
 
-    it("hide if no seances", async () => {
-        const { data: dummyMovie } = await getDummyMovie()
-        const { data: dummySeance } = await getDummySeance()
-        await getSeances.mockResolvedValue({ data: [ dummySeance ] })
+    it("show if valid props", done => {
+        getSeances.mockImplementationOnce(() => Promise.resolve({ data: [seance] }));
         const wrapper = createComponent({
             propsData: {
-                movie: dummyMovie
+                movie
             }
           })
-        const screening = wrapper.find("[data-spec='card']")
-        await wrapper.vm.$nextTick();
-        expect(screening.exists()).toBeTruthy()
+        setTimeout(() => {
+            const screening = wrapper.find("[data-spec='card']")
+            expect(screening.exists()).toBeTruthy()
+            done()
+        }, 2000)
         
     })
 })
