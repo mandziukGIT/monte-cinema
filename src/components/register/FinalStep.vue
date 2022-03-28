@@ -36,12 +36,12 @@
 
             </template>
             <template #form-actions>
-                <base-button :block="true" type="button">
+                <base-button block type="button">
                     <router-link :to="{name: 'login'}"> 
                         Log in instead
                     </router-link>
                 </base-button>
-                <base-button :block="true" buttonType="primary" :disabled="!isFormValid">Register</base-button>
+                <base-button block type="submit" buttonStyle="primary" :disabled="!isFormValid">Register</base-button>
             </template>
         </form-card>
     </div>
@@ -52,6 +52,12 @@ import FormCard from '@/components/FormCard.vue'
 export default {
     components: {
         FormCard,
+    },
+    props: {
+        error: {
+            type: Boolean,
+            default: false
+        }
     },
     data() {
         return {
@@ -70,7 +76,7 @@ export default {
         formSubmit() {
             this.validateForm()
             if(this.isFormValid) {
-                this.$emit("secondDone", { first_name: this.firstName, last_name: this.lastName, date_of_birth: this.birthDate })
+                this.$emit("registerFinalStepDone", { first_name: this.firstName, last_name: this.lastName, date_of_birth: this.birthDate })
             } 
         },
         validateDateFormat(date) {

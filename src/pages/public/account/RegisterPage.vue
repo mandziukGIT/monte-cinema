@@ -1,7 +1,7 @@
 <template>
     <div class="registration-container">
-       <first-step v-if="!isFirstDone" :error="isRegistrationError" @firstDone="nextStep" @close="isRegistrationError = false"></first-step>
-       <final-step v-else @secondDone="registerUser"></final-step>
+       <first-step v-if="!isFirstStepDone" :error="isRegistrationError" @registerFirstStepDone="nextStep" @close="isRegistrationError = false"></first-step>
+       <final-step v-else @registerFinalStepDone="registerUser"></final-step>
     </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     },
     data() {
         return {
-            isFirstDone: false,
+            isFirstStepDone: false,
             userCredentials: null,
             isRegistrationError: false
         }
@@ -27,7 +27,7 @@ export default {
     methods: {
         nextStep(userCredentials) {
             this.userCredentials = userCredentials;
-            this.isFirstDone = true;
+            this.isFirstStepDone = true;
         },
         async registerUser(userPersonalData) {
             try {
@@ -35,7 +35,7 @@ export default {
                 this.$router.push({name: 'home'})
             } catch {
                 this.isRegistrationError = true
-                this.isFirstDone = false
+                this.isFirstStepDone = false
             }
         }
     }
@@ -44,7 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 .registration-container {
-     max-width: 600px;
+    max-width: 600px;
     margin: 0 auto;
 }
 </style>

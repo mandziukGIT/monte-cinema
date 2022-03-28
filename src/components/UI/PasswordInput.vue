@@ -2,16 +2,14 @@
     <div class="password-input__wrapper">
         <label class="password-input__label" for="password">password</label>
         <div class="password-input__input">
-            <input 
-                id="password" 
+            <base-input 
+                id="password"
                 :value="value" 
-                class="password-input__input--field" 
-                :class="[{'password-input__input--error': isInvalid}]" 
-                :type="inputType" 
-                placeholder="Enter your password" 
-                @input="$emit('input', $event.target.value);"
+                @input="$emit('input', $event)" 
+                :type="inputType"
+                :isInvalid="isInvalid"
                 @blur="validatePassword"
-                autocomplete="off"
+                placeholder="Enter your password" 
             />
             <img class="password-input__input--icon" :src="inputIcon" @click="togglePasswordVisibility" @mousedown.prevent />
         </div>
@@ -98,12 +96,6 @@ export default {
     }
     &__input {
         position: relative;
-        &--field {
-            @include base-input;
-        }
-        &--error {
-            border: 1px solid red
-        }
         &--icon {
             position: absolute;
             top: calc(50%);

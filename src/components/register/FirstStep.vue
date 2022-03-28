@@ -16,12 +16,12 @@
                 </div>
             </template>
             <template #form-actions>
-                <base-button :block="true" type="button">
+                <base-button block type="button">
                     <router-link :to="{name: 'login'}"> 
                         Log in instead
                     </router-link>
                 </base-button>
-                <base-button :block="true" buttonType="primary" :disabled="!isFormValid">Next step</base-button>
+                <base-button block buttonStyle="primary" type="submit" :disabled="!isFormValid">Next step</base-button>
             </template>
         </form-card>
     </div>
@@ -54,7 +54,7 @@ export default {
         formSubmit() {
             this.validateForm()
             if(this.isFormValid) {
-                this.$emit("firstDone", { email: this.email, password: this.password })
+                this.$emit("registerFirstStepDone", { email: this.email, password: this.password })
             }
         },
         validateEmail() {

@@ -20,14 +20,14 @@
             <div>
                 <template v-if="!isLoggedIn">
                     <router-link :to="{ name:'register' }">
-                        <base-button >Register</base-button>
+                        <base-button>Register</base-button>
                     </router-link>
                     <router-link :to="{ name:'login' }">
-                        <base-button buttonType="primary">Login</base-button>
+                        <base-button buttonStyle="primary">Login</base-button>
                     </router-link>
                 </template>
                 <template v-else>
-                    <base-button @click.native="logout" buttonType="primary">Logout</base-button>
+                    <base-button @click.native="logout" buttonStyle="primary">Logout</base-button>
                 </template>
             </div>
         </div> 
