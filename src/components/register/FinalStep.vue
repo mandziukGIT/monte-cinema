@@ -33,7 +33,6 @@
                 <label for="privacyPolicy" :class="[{'input-caption--error': isInvalidPrivacyPolicy}]">
                     <input id="privacyPolicy" type="checkbox" v-model="isPPChecked"/> I accept Privacy Policy
                 </label>
-
             </template>
             <template #form-actions>
                 <base-button block type="button">
@@ -52,12 +51,6 @@ import FormCard from '@/components/FormCard.vue'
 export default {
     components: {
         FormCard,
-    },
-    props: {
-        error: {
-            type: Boolean,
-            default: false
-        }
     },
     data() {
         return {

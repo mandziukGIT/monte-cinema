@@ -3,16 +3,16 @@
         <h1 class="headline">Hi there! <br> <span class="headline--accent">Care to log in?</span></h1>
         <form-card @submit.prevent.native="formSubmit">
             <template #form-controls>
-                <base-input v-model="email" @blur="validateEmail" inputLabel="email" :isValid="isEmailError" placeholder="Enter your email"/>
+                <base-input v-model="email" inputLabel="email" placeholder="Enter your email"/>
                 <password-input v-model="password" />
             </template>
             <template #form-actions>
-                    <base-button block type="button">
-                        <router-link :to="{name: 'register'}">
-                            Register instead
-                        </router-link>
-                    </base-button>
-                    <base-button block type="submit" buttonStyle="primary">Log in</base-button>
+                <base-button block type="button">
+                    <router-link :to="{name: 'register'}">
+                        Register instead
+                    </router-link>
+                </base-button>
+                <base-button block type="submit" buttonStyle="primary">Log in</base-button>
             </template>
             <template #form-errors>
                 <base-alert v-if="isLoginError" type="error"  @close="isLoginError = false">
@@ -40,20 +40,15 @@ export default {
         return {
             email: '',
             password: '',
-            isEmailError: false,
             isLoginError: false
         }
     },
     methods: {
-        validateEmail() {
-            this.isEmailError = !(/^\S+@\S+\.\S+$/.test(this.email))
-        },
         async formSubmit() {
             try {
                await this.$store.dispatch("user/login", { email: this.email, password: this.password})
                this.$router.push({name: "home"})
-            } 
-            catch (err) {
+            } catch {
                 this.isLoginError = true
             }
             
