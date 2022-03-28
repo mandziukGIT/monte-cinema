@@ -42,4 +42,26 @@ export default {
   max-width: 1440px;
   margin: 0 auto;
 }
+.text-success {
+  color: $color-eucalyptus
+}
+.text-danger {
+    color: $color-cherry-red
+}
+
+.headline {
+    font-family: 'Eczar', serif;
+    font-weight: 600;
+    font-size: 80px;
+    line-height: 102%;
+    letter-spacing: -0.01em;
+    color: $color-tuna;
+    &--accent {
+      color: $color-jumbo;
+    }
+    @include sm {
+      font-size: 40px;
+      text-align: center;
+    }
+}
 </style>

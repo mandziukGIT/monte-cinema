@@ -13,19 +13,23 @@ export default {
             type: String,
             default: "16"
         },
-        buttonType: {
+        buttonStyle: {
             type: String,
             default: "default"
+        },
+        block: {
+            type: Boolean,
+            required: false
         }
     },
     computed: {
         buttonClasses() {
             return ['button', {
-                'button--primary': this.buttonType === 'primary'
+                'button--primary': this.buttonStyle === 'primary'
             }]
         },
         buttonStyles() {
-            return { "fontSize": +this.fontSize + "px"};
+            return { "fontSize": +this.fontSize + "px", "width": this.block ? '100%' : ''};
         }
         
     }
@@ -45,10 +49,17 @@ export default {
       border: 2px solid $btn-primary-color;
       color: $color-snow-white;
       @include fade-transition;
-      &:active, &:hover{
+      &:active, &:hover {
           @include fade-transition;
           background-color: transparent;
           color: $btn-primary-color;
+      }
+      &:disabled {
+          transition: none;
+          border: 2px solid $color-sweet-pink;
+          background-color: $color-sweet-pink;
+          color: $color-snow-white;
+          cursor: auto;
       }
   }
   @include sm {
