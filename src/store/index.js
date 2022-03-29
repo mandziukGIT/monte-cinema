@@ -17,8 +17,8 @@ export default new Vuex.Store({
     premieres(state) {
       return state.movies.slice(0, 3)
     },
-    movie: (state) => (payload) => {
-      return state.movies.find(movie => movie.id === payload.code)
+    movie: (state) => (movieId) => {
+      return state.movies.find(movie => movie.id === movieId)
     }
   },
   mutations: {

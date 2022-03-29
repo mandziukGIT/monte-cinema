@@ -60,7 +60,7 @@ export default {
             return this.getScreeningsFormatDate(this.dateFilter)
         },
         moviesList() {
-            return !this.movieFilter ? this.$store.getters.movies : [this.$store.getters.movie(this.movieFilter)]
+            return !this.movieFilter ? this.$store.getters.movies : [this.$store.getters.movie(this.movieFilter.code)]
         }
     }
 }

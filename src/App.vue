@@ -4,6 +4,7 @@
       <app-header></app-header>
     </div>
     <div class="app__view">
+      <bread-crumbs v-if="isVisible"></bread-crumbs>
       <router-view/>
     </div>
   </div>
@@ -11,6 +12,7 @@
 
 <script>
 import AppHeader from '@/components/AppHeader.vue'
+import BreadCrumbs from '@/components/BreadCrumbs.vue'
 
 export default {
   name: "App",
@@ -19,7 +21,13 @@ export default {
     titleTemplate: "%s | Monte Cinema",
   },
   components: {
-    AppHeader
+    AppHeader,
+    BreadCrumbs
+  },
+  computed: {
+    isVisible() {
+      return !(this.$route?.path.includes("account") || this.$route.path === '/');
+    }
   },
   async created() {
     await this.$store.dispatch('fetchMovies')
