@@ -1,17 +1,20 @@
 <template>
     <div class="movie__card">
         <h2 class="movie__title"> {{ movieTitle }}</h2>
-        <p class="movie__duration-time">{{ movieLength }}</p>
-        <img class="movie__poster" :src="moviePoster" />
-        <base-chip class="movie__category">
-            {{ movieCategory }}
-        </base-chip>
+        <div class="movie__details">   
+            <p class="movie__details--duration-time">{{ movieLength }}</p>
+            <img class="movie__details--poster" :src="moviePoster" />
+            <base-chip class="movie__details--category">
+                {{ movieCategory }}
+            </base-chip>
+        </div>
     </div>
 </template>
 
 <script>
 import { formatMovieLength } from "@/helpers/dateHelper"
 export default {
+    name: "MovieCard",
     props: {
         movie: {
             type: Object,
@@ -54,20 +57,22 @@ export default {
             font-size: 28px; 
         }
     }
-    &__duration-time {
+    &__details {
+        &--duration-time {
         font-size: 14px;
         color: $color-jumbo;
         line-height: 170%;
         letter-spacing: 0.04em;
-    }
-    &__poster { 
-        object-fit: cover;
-        max-height: 200px;
-        width: 100%;
-        margin: 20px 0;
-    }
-    &__category {
-        align-self: flex-start;
+        }
+        &--poster { 
+            object-fit: cover;
+            max-height: 200px;
+            width: 100%;
+            margin: 20px 0;
+        }
+        &--category {
+            align-self: flex-start;
+        }
     }
 }  
 </style>
