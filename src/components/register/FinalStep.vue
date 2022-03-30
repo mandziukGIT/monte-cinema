@@ -33,7 +33,6 @@
                 <label for="privacyPolicy" :class="[{'input-caption--error': isInvalidPrivacyPolicy}]">
                     <input id="privacyPolicy" type="checkbox" v-model="isPPChecked"/> I accept Privacy Policy
                 </label>
-
             </template>
             <template #form-actions>
                 <base-button block type="button">
@@ -68,10 +67,14 @@ export default {
     },
     methods: {
         formSubmit() {
+            const registerData = {
+                first_name: this.firstName, 
+                last_name: this.lastName, 
+                date_of_birth: this.birthDate 
+            }
             this.validateForm()
             if(this.isFormValid) {
-                this.$emit("registerSecondStepDone", {firstName: this.firstName, lastName: this.lastName, birthDate: this.birthDate})
-                this.$router.push({name: 'home'})
+                this.$emit("registerFinalStepDone", registerData)
             } 
         },
         validateDateFormat(date) {

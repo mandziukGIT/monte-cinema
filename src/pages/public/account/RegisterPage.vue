@@ -1,7 +1,7 @@
 <template>
     <div class="registration-container">
-       <first-step v-if="!isFirstStepDone" @registerFirstStepDone="nextStep"></first-step>
-       <final-step v-else @registerSecondStepDone="registerUser"></final-step>
+       <first-step v-if="!isFirstStepDone" :error="isRegistrationError" @registerFirstStepDone="nextStep" @close="isRegistrationError = false"></first-step>
+       <final-step v-else @registerFinalStepDone="registerUser"></final-step>
     </div>
 </template>
 
@@ -9,10 +9,15 @@
 import FinalStep from '@/components/register/FinalStep.vue'
 import FirstStep from '@/components/register/FirstStep.vue'
 export default {
+    metaInfo: {
+        title: "Register",
+        titleTemplate: null
+    },
     data() {
         return {
             isFirstStepDone: false,
-            userCredentials: null
+            userCredentials: null,
+            isRegistrationError: false
         }
     },
     components: {
@@ -24,8 +29,14 @@ export default {
             this.userCredentials = userCredentials;
             this.isFirstStepDone = true;
         },
-        registerUser(userPersonalData) {
-            console.log(userPersonalData)
+        async registerUser(userPersonalData) {
+            try {
+                await this.$store.dispatch('user/register', { ...userPersonalData, ...this.userCredentials})
+                this.$router.push({name: 'home'})
+            } catch {
+                this.isRegistrationError = true
+                this.isFirstStepDone = false
+            }
         }
     }
 }
@@ -33,7 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 .registration-container {
-     max-width: 600px;
+    max-width: 600px;
     margin: 0 auto;
 }
 </style>

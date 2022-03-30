@@ -1,21 +1,27 @@
 <template>
     <div class="container">
         <h1 class="headline">Hi there! <br> <span class="headline--accent">Care to log in?</span></h1>
-        <form-card>
+        <form-card @submit.prevent.native="formSubmit">
             <template #form-controls>
-                <base-input v-model="email" @blur="validateEmail" inputLabel="email" :isValid="isEmailError" placeholder="Enter your email"/>
+                <base-input v-model="email" inputLabel="email" placeholder="Enter your email"/>
                 <password-input v-model="password" />
             </template>
             <template #form-actions>
-                    <base-button block type="button">
-                        <router-link :to="{name: 'register'}">
-                            Register instead
-                        </router-link>
-                    </base-button>
-                    <base-button block type="submit" buttonStyle="primary">Log in</base-button>
+                <base-button block type="button">
+                    <router-link :to="{name: 'register'}">
+                        Register instead
+                    </router-link>
+                </base-button>
+                <base-button block type="submit" buttonStyle="primary">Log in</base-button>
+            </template>
+            <template #form-errors>
+                <base-alert v-if="isLoginError" type="error"  @close="isLoginError = false">
+                    Invalid user credentials. Try again
+                </base-alert>
             </template>
         </form-card>
-        <p class="info">Did you forget your password? <router-link to="" class="info--accent">Reset it now</router-link></p>
+        <!-- keep commented until reset password module is available -->
+        <!-- <p class="info">Did you forget your password? <router-link to="" class="info--accent">Reset it now</router-link></p> -->
     </div>
 </template>
 
@@ -27,16 +33,30 @@ export default {
         FormCard,
         PasswordInput,
     },
+    metaInfo: {
+        title: "Login",
+        titleTemplate: null
+    },
     data() {
         return {
             email: '',
             password: '',
-            isEmailError: false
+            isLoginError: false
         }
     },
     methods: {
-        validateEmail() {
-            this.isEmailError = !(/^\S+@\S+\.\S+$/.test(this.email))
+        async formSubmit() {
+            const loginData = {
+                email: this.email, 
+                password: this.password
+            }
+            try {
+               await this.$store.dispatch("user/login", loginData)
+               this.$router.push({name: "home"})
+            } catch {
+                this.isLoginError = true
+            }
+            
         }
     }
 }

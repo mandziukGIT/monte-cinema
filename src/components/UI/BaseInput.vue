@@ -60,7 +60,7 @@ export default {
             margin: 10px 0;
             padding: $input-internal-padding;
             &--error {
-                border: 1px solid red
+                border: 1px solid $color-cherry-red
             }
         }
     }
