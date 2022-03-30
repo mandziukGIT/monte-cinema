@@ -67,9 +67,14 @@ export default {
     },
     methods: {
         formSubmit() {
+            const registerData = {
+                first_name: this.firstName, 
+                last_name: this.lastName, 
+                date_of_birth: this.birthDate 
+            }
             this.validateForm()
             if(this.isFormValid) {
-                this.$emit("registerFinalStepDone", { first_name: this.firstName, last_name: this.lastName, date_of_birth: this.birthDate })
+                this.$emit("registerFinalStepDone", registerData)
             } 
         },
         validateDateFormat(date) {

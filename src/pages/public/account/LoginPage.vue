@@ -20,7 +20,8 @@
                 </base-alert>
             </template>
         </form-card>
-        <p class="info">Did you forget your password? <router-link to="" class="info--accent">Reset it now</router-link></p>
+        <!-- keep commented until reset password module is available -->
+        <!-- <p class="info">Did you forget your password? <router-link to="" class="info--accent">Reset it now</router-link></p> -->
     </div>
 </template>
 
@@ -45,8 +46,12 @@ export default {
     },
     methods: {
         async formSubmit() {
+            const loginData = {
+                email: this.email, 
+                password: this.password
+            }
             try {
-               await this.$store.dispatch("user/login", { email: this.email, password: this.password})
+               await this.$store.dispatch("user/login", loginData)
                this.$router.push({name: "home"})
             } catch {
                 this.isLoginError = true

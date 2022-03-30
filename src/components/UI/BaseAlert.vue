@@ -2,9 +2,7 @@
     <div class="alert" :class="type">
         <img class="alert__icon" :src="require(`@/assets/images/${type}-icon.svg`)" />
         <p class="alert__message">
-            <slot>
-
-            </slot>
+            <slot></slot>
         </p>
         <img class="alert__removal" src="@/assets/images/cancel-icon.svg" @click="$emit('close')"/>
     </div>

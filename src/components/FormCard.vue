@@ -1,19 +1,13 @@
 <template>
     <form class="form">
         <div class="form__errors">
-            <slot name="form-errors">
-
-            </slot>
+            <slot name="form-errors"></slot>
         </div>
         <div class="form__controls">
-            <slot name="form-controls">
-
-            </slot>
+            <slot name="form-controls"></slot>
         </div>
         <div class="form__actions">
-            <slot name="form-actions">
-
-            </slot>
+            <slot name="form-actions"></slot>
         </div>
     </form>
 </template>
