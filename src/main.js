@@ -8,6 +8,7 @@ import BaseSelect from '@/components/UI/BaseSelect'
 import BaseButton from '@/components/UI/BaseButton'
 import BaseInput from '@/components/UI/BaseInput'
 import BaseChip from '@/components/UI/BaseChip'
+import BaseAlert from '@/components/UI/BaseAlert.vue'
 
 Vue.config.productionTip = false
 
@@ -17,6 +18,7 @@ Vue.use(VCalendar, {
 });
 
 Vue.component('base-chip', BaseChip)
+Vue.component('base-alert', BaseAlert)
 Vue.component('base-button', BaseButton)
 Vue.component('base-input', BaseInput)
 Vue.component('base-select', BaseSelect)

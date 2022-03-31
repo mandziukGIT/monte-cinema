@@ -51,8 +51,8 @@ export default {
     font-size: 18px;
     box-sizing: border-box;
     border: none;
-    border-radius: $input-border-radius;
-    background-color: $color-athens-gray;
+    border-radius: 8px;
+    background-color: #f0f0f0;
     width: 100%;
     &:hover {
       background-color: #e5e5e5;
@@ -63,11 +63,23 @@ export default {
       background-color: rgba(47, 128, 237, 0.1);
       box-shadow: inset 0px 0px 0px 1px #2f80ed;
     }
-    margin-top: 10px;
+    margin: 10px 0;
     padding: $input-internal-padding;
     &--error {
-      border: 1px solid red;
+      border: 1px solid $color-cherry-red;
     }
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+    background-color: rgba(47, 128, 237, 0.1);
+    box-shadow: inset 0px 0px 0px 1px #2f80ed;
+  }
+  margin-top: 10px;
+  padding: $input-internal-padding;
+  &--error {
+    border: 1px solid red;
   }
 }
 </style>
