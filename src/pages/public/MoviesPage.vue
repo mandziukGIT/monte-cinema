@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1 class="headline">All the movies</h1>
     <filtration-bar
       @searchPhraseUpdate="updateSearchFilter"
@@ -42,7 +42,9 @@ export default {
       let movies = this.movies;
       if (this.searchFilterPhrase) {
         movies = this.movies.filter((movie) =>
-          movie.title.includes(this.searchFilterPhrase)
+          movie.title
+            .toLowerCase()
+            .includes(this.searchFilterPhrase.toLowerCase())
         );
       }
       if (this.categoryFilterOption) {
@@ -67,3 +69,10 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.container {
+  @include xs {
+    margin: 20px 2rem 20px 2rem;
+  }
+}
+</style>

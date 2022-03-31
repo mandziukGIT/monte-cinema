@@ -70,6 +70,7 @@ export default {
       padding: 0;
     }
     &::v-deep .vs__selected-options {
+      flex-shrink: 0;
       padding: 0;
     }
     &::v-deep .vs__dropdown-menu {
