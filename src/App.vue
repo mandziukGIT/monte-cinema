@@ -4,13 +4,13 @@
       <app-header></app-header>
     </div>
     <div class="app__view">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import AppHeader from '@/components/AppHeader.vue'
+import AppHeader from "@/components/AppHeader.vue";
 
 export default {
   name: "App",
@@ -19,17 +19,17 @@ export default {
     titleTemplate: "%s | Monte Cinema",
   },
   components: {
-    AppHeader
+    AppHeader,
   },
   created() {
-    this.$store.dispatch('user/restoreUserSession')
-    this.$store.dispatch('fetchMovies')
-  }
-}
+    this.$store.dispatch("user/restoreUserSession");
+    this.$store.dispatch("fetchMovies");
+  },
+};
 </script>
 
 <style lang="scss">
-@import '@/styles/resets';
+@import "@/styles/resets";
 .app {
   &__view {
     padding: 0 2rem;
@@ -44,25 +44,26 @@ export default {
   margin: 0 auto;
 }
 .text-success {
-  color: $color-eucalyptus
+  color: $color-eucalyptus;
 }
 .text-danger {
-    color: $color-cherry-red
+  color: $color-cherry-red;
 }
 
 .headline {
-    font-family: 'Eczar', serif;
-    font-weight: 600;
-    font-size: 80px;
-    line-height: 102%;
-    letter-spacing: -0.02em;
-    color: $color-tuna;
-    &--accent {
-      color: $color-jumbo;
-    }
-    @include sm {
-      font-size: 40px;
-      text-align: center;
-    }
+  font-family: "Eczar", serif;
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 102%;
+  letter-spacing: -0.02em;
+  color: $color-tuna;
+  margin-top: 0;
+  &--accent {
+    color: $color-jumbo;
+  }
+  @include sm {
+    font-size: 40px;
+    text-align: center;
+  }
 }
 </style>
