@@ -9,21 +9,21 @@
   </div>
 </template>
 <script>
-import FiltrationBar from "@/components/movies/FiltationBar.vue";
-import MoviesList from "@/components/movies/MoviesList.vue";
+import FiltrationBar from '@/components/movies/FiltationBar.vue';
+import MoviesList from '@/components/movies/MoviesList.vue';
 export default {
-  name: "MoviesPage",
+  name: 'MoviesPage',
   components: {
     FiltrationBar,
     MoviesList,
   },
   metaInfo: {
-    title: "Movies",
+    title: 'Movies',
   },
   data() {
     return {
-      searchFilterPhrase: "",
-      categoryFilterOption: "",
+      searchFilterPhrase: '',
+      categoryFilterOption: '',
     };
   },
   methods: {
@@ -53,8 +53,9 @@ export default {
         );
       }
       if (this.categoryFilterOption && this.searchFilterPhrase) {
+        console.log(this.categoryFilterOption, this.searchFilterPhrase);
         const phraseMovies = this.movies.filter((movie) =>
-          movie.title.includes(this.searchFilterPhrase)
+          movie.title.toLowerCase().includes(this.searchFilterPhrase)
         );
         const phraseAndGenreMovies = phraseMovies.filter(
           (movie) => movie.genre.id === this.categoryFilterOption
@@ -65,7 +66,7 @@ export default {
     },
   },
   async created() {
-    await this.$store.dispatch("fetchGenres");
+    await this.$store.dispatch('fetchGenres');
   },
 };
 </script>
