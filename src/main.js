@@ -9,11 +9,13 @@ import BaseInput from '@/components/UI/BaseInput'
 import BaseChip from '@/components/UI/BaseChip'
 import BaseAlert from '@/components/UI/BaseAlert.vue'
 import 'vue-select/dist/vue-select.css';
+import VueCompositionAPI from '@vue/composition-api'
 
 Vue.config.productionTip = false
 
 import store from './store'
 Vue.use(VueMeta)
+Vue.use(VueCompositionAPI)
 Vue.use(VCalendar, {
   componentPrefix: 'vc'
 });
