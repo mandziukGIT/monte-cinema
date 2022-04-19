@@ -1,5 +1,6 @@
 import { mount } from "@vue/test-utils"
 import ScreeningCard from '@/components/screenings/ScreeningCard'
+import Vue from 'vue';
 
 import { getSeances } from "@/api/resources/SeancesRepository"
 
@@ -36,23 +37,20 @@ const createComponent = (options) =>  mount(ScreeningCard, options);
 
 describe("screening card component", () => {
 
-    it("hide if invalid props", async () => {
+    it("hide if invalid props", () => {
         const wrapper = createComponent()
         expect(wrapper.find('screening').exists()).toBeFalsy()
     })
 
-    it("show if valid props", done => {
+    it("show if valid props", async() => {
         getSeances.mockImplementationOnce(() => Promise.resolve({ data: [seance] }));
         const wrapper = createComponent({
             propsData: {
                 movie
             }
           })
-        setTimeout(() => {
-            const screening = wrapper.find("[data-spec='card']")
-            expect(screening.exists()).toBeTruthy()
-            done()
-        }, 2000)
-        
+        await Vue.nextTick();
+        const screening = wrapper.find("[data-spec='card']")
+        expect(screening.exists()).toBeTruthy()
     })
 })
