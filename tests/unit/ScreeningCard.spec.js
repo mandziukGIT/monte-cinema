@@ -23,15 +23,9 @@ const seance = {
     hall: 1
 }
 
-jest.mock('@/api/resources/SeancesRepository', () => {
-    const originalModule = jest.requireActual('@/api/resources/SeancesRepository');
-
-    return {
-        __esModule: true,
-        ...originalModule,
-        getSeances: jest.fn()
-    };
-})
+jest.mock('@/api/resources/SeancesRepository', () => ({
+    getSeances: jest.fn()
+}));
 
 const createComponent = (options) =>  mount(ScreeningCard, options);
 
