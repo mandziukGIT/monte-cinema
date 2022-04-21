@@ -4,32 +4,42 @@
       <app-header></app-header>
     </div>
     <div class="app__view">
+      <bread-crumbs v-if="isVisible"></bread-crumbs>
       <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import AppHeader from "@/components/AppHeader.vue";
+import AppHeader from '@/components/AppHeader.vue';
+import BreadCrumbs from '@/components/BreadCrumbs.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   metaInfo: {
     title: null,
-    titleTemplate: "%s | Monte Cinema",
+    titleTemplate: '%s | Monte Cinema',
   },
   components: {
     AppHeader,
+    BreadCrumbs,
+  },
+  computed: {
+    isVisible() {
+      return !(
+        this.$route?.path.includes('account') || this.$route.path === '/'
+      );
+    },
   },
   created() {
-    this.$store.dispatch("user/restoreUserSession");
-    this.$store.dispatch("fetchMovies");
+    this.$store.dispatch('user/restoreUserSession');
+    this.$store.dispatch('fetchMovies');
   },
 };
 </script>
 
 <style lang="scss">
-@import "@/styles/resets";
+@import '@/styles/resets';
 .app {
   &__view {
     padding: 0 2rem;
@@ -51,7 +61,7 @@ export default {
 }
 
 .headline {
-  font-family: "Eczar", serif;
+  font-family: 'Eczar', serif;
   font-weight: 600;
   font-size: 80px;
   line-height: 102%;
