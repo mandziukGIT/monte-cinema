@@ -1,10 +1,13 @@
 <template>
-    <h1>This is ScreeningsPage</h1>
+  <screenings-section />
 </template>
 <script>
+import ScreeningsSection from "@/components/screenings/ScreeningsSection.vue";
 export default {
-    metaInfo: {
-        title: "Screenings",
-    }
-}
+  name: "ScreeningsPage",
+  components: { ScreeningsSection },
+  metaInfo: {
+    title: "Screenings",
+  },
+};
 </script>
