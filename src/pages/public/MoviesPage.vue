@@ -53,7 +53,6 @@ export default {
         );
       }
       if (this.categoryFilterOption && this.searchFilterPhrase) {
-        console.log(this.categoryFilterOption, this.searchFilterPhrase);
         const phraseMovies = this.movies.filter((movie) =>
           movie.title.toLowerCase().includes(this.searchFilterPhrase)
         );

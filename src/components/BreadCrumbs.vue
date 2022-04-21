@@ -37,7 +37,6 @@ export default {
     async getRouteCrumbs() {
       const routePath = this.$route.path;
       const routeCrumbs = routePath.split('/');
-      console.log(routeCrumbs);
       if (!isNaN(routeCrumbs[routeCrumbs.length - 1])) {
         const { data } = await client.get(routePath);
         routeCrumbs.splice(-1, 1, data.title);
