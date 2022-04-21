@@ -1,5 +1,9 @@
 <template>
   <div class="screenings">
+    <div class="screenings__heading">
+      <p class="screenings__caption">Screenings:</p>
+      <p class="screenings__date">{{ dateDisplay }}</p>
+    </div>
     <div class="screenings__filtration">
       <div class="screenings__date">
         <p>day</p>
@@ -22,10 +26,10 @@
 </template>
 
 <script>
-import DateFilter from "@/components/screenings/DateFilter.vue";
-import MovieFilter from "@/components/screenings/MovieFilter.vue";
-import ScreeningCard from "@/components/screenings/ScreeningCard.vue";
-import { getFormattedDate } from "@/helpers/dateHelper";
+import DateFilter from '@/components/screenings/DateFilter.vue';
+import MovieFilter from '@/components/screenings/MovieFilter.vue';
+import ScreeningCard from '@/components/screenings/ScreeningCard.vue';
+import { getDayName, getFormattedDate } from '@/helpers/dateHelper';
 export default {
   components: {
     DateFilter,
@@ -34,8 +38,8 @@ export default {
   },
   data() {
     return {
-      movieFilter: "",
-      dateFilter: "",
+      dateFilter: new Date(),
+      movieFilter: '',
     };
   },
   methods: {
@@ -45,12 +49,20 @@ export default {
     setMovie(event) {
       this.movieFilter = event;
     },
+    getScreeningsFormatDate(date) {
+      const dayName = getDayName(date, 'long');
+      const formattedDate = getFormattedDate(date);
+      return dayName + ' ' + formattedDate;
+    },
   },
   computed: {
     filterBy() {
       return {
         date: getFormattedDate(this.dateFilter),
       };
+    },
+    dateDisplay() {
+      return this.getScreeningsFormatDate(this.dateFilter);
     },
     moviesList() {
       return !this.movieFilter
@@ -63,7 +75,7 @@ export default {
 
 <style lang="scss" scoped>
 .screenings {
-  font-family: "Eczar", serif;
+  font-family: 'Eczar', serif;
   font-weight: 600;
   font-size: 64px;
   line-height: 102%;
@@ -71,12 +83,11 @@ export default {
   @include sm {
     font-size: 48px;
   }
+  &__caption {
+    color: $color-tuna;
+  }
   &__date {
-    overflow: auto;
-    margin-right: 15px;
-    @include sm {
-      margin-right: 0px;
-    }
+    color: $color-bombay;
   }
   &__filtration {
     display: flex;
@@ -95,6 +106,13 @@ export default {
     p {
       @include text-label;
       padding: 10px 0;
+    }
+  }
+  &__date {
+    overflow: auto;
+    margin-right: 15px;
+    @include sm {
+      margin-right: 0px;
     }
   }
   &__heading,

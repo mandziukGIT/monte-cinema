@@ -1,9 +1,5 @@
 <template>
   <div class="date-filter">
-    <div class="date-filter__date-display">
-      <p class="date-filter__date-display--caption">Screenings:</p>
-      <p class="date-filter__date-display--date">{{ dateDisplay }}</p>
-    </div>
     <div class="date-filter__list">
       <div
         class="date-filter__list__option"
@@ -16,35 +12,31 @@
       >
         {{ option.label }}
       </div>
-      <vc-date-picker
-        class="date-filter__calendar"
-        v-model="dateFilter"
-        :min-date="new Date()"
-        color="red"
-      >
-        <template v-slot="{ togglePopover }">
-          <button class="date-filter__calendar__toggle" @click="togglePopover">
-            <img
-              class="date-filter__calendar__toggle--icon"
-              src="@/assets/images/calendar.svg"
-              alt="calendar icon"
-            />
-          </button>
-        </template>
-      </vc-date-picker>
     </div>
+    <vc-date-picker
+      class="date-filter__calendar"
+      v-model="dateFilter"
+      :min-date="new Date()"
+      color="red"
+    >
+      <template v-slot="{ togglePopover }">
+        <button class="date-filter__calendar__toggle" @click="togglePopover">
+          <img
+            class="date-filter__calendar__toggle--icon"
+            src="@/assets/images/calendar.svg"
+            alt="calendar icon"
+          />
+        </button>
+      </template>
+    </vc-date-picker>
   </div>
 </template>
 <script>
-import {
-  getDaysAhead,
-  getDayName,
-  getFormattedDate,
-} from "@/helpers/dateHelper";
+import { getDaysAhead, getDayName } from '@/helpers/dateHelper';
 export default {
   data() {
     return {
-      dateFilter: new Date(),
+      dateFilter: null,
     };
   },
   methods: {
@@ -57,35 +49,24 @@ export default {
       const filterOptions = daysAhead.map((day, index) => {
         return {
           id: day.getDate(),
-          label: !index ? "Today" : getDayName(day, "short"),
+          label: !index ? 'Today' : getDayName(day, 'short'),
           date: day,
         };
       });
       this.setActiveOption(filterOptions[0]);
       return filterOptions;
     },
-    getScreeningsFormatDate(date) {
-      const dayName = getDayName(date, "long");
-      const formattedDate = getFormattedDate(date);
-      return dayName + " " + formattedDate;
-    },
   },
   computed: {
     filterOptions() {
       return this.getFilterOptions();
     },
-    dateDisplay() {
-      return this.getScreeningsFormatDate(this.dateFilter);
-    },
   },
   watch: {
-    dateFilter: {
-      immediate: true,
-      handler(newVal) {
-        this.dateFilter = newVal;
-        this.activeOptionId = newVal.getDate();
-        this.$emit("dateChange", newVal);
-      },
+    dateFilter(newVal) {
+      this.dateFilter = newVal;
+      this.activeOptionId = newVal.getDate();
+      this.$emit('dateChange', newVal);
     },
   },
 };
@@ -94,19 +75,10 @@ export default {
 <style lang="scss" scoped>
 .date-filter {
   display: flex;
-  flex-direction: column;
-  &__date-display {
-    &--caption {
-      color: $color-tuna;
-    }
-    &--date {
-      color: $color-bombay;
-    }
-  }
   &__list {
     display: flex;
     &__option {
-      font-family: "RobotoMono", monospace;
+      font-family: 'RobotoMono', monospace;
       font-weight: 500;
       font-size: 18px;
       line-height: 100%;
@@ -121,12 +93,12 @@ export default {
         background-color: $color-tuna;
         color: $color-snow-white;
       }
-      // @include lg {
-      //     display: none;
-      //     &:nth-child(-n+3) {
-      //         display: block;
-      //     }
-      // }
+      @include lg {
+        display: none;
+        &:nth-child(-n + 3) {
+          display: block;
+        }
+      }
       @include md {
         display: block;
       }
