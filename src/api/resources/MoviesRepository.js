@@ -8,5 +8,8 @@ export default {
     },
     getMovie(movieId) {
         return client.get(`${resource}/${movieId}`);
+    },
+    getGenres() {
+        return client.get('movie_genres')
     }
 }
