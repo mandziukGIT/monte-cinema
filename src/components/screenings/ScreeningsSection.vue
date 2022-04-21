@@ -109,7 +109,6 @@ export default {
     }
   }
   &__date {
-    overflow: auto;
     margin-right: 15px;
     @include sm {
       margin-right: 0px;
