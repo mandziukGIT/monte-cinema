@@ -5,34 +5,37 @@
     </div>
     <div class="app__view">
       <bread-crumbs v-if="isVisible"></bread-crumbs>
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import AppHeader from '@/components/AppHeader.vue'
-import BreadCrumbs from '@/components/BreadCrumbs.vue'
+import AppHeader from '@/components/AppHeader.vue';
+import BreadCrumbs from '@/components/BreadCrumbs.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   metaInfo: {
     title: null,
-    titleTemplate: "%s | Monte Cinema",
+    titleTemplate: '%s | Monte Cinema',
   },
   components: {
     AppHeader,
-    BreadCrumbs
+    BreadCrumbs,
   },
   computed: {
     isVisible() {
-      return !(this.$route?.path.includes("account") || this.$route.path === '/');
-    }
+      return !(
+        this.$route?.path.includes('account') || this.$route.path === '/'
+      );
+    },
   },
-  async created() {
-    await this.$store.dispatch('fetchMovies')
-  }
-}
+  created() {
+    this.$store.dispatch('user/restoreUserSession');
+    this.$store.dispatch('fetchMovies');
+  },
+};
 </script>
 
 <style lang="scss">
@@ -51,25 +54,25 @@ export default {
   margin: 0 auto;
 }
 .text-success {
-  color: $color-eucalyptus
+  color: $color-eucalyptus;
 }
 .text-danger {
-    color: $color-cherry-red
+  color: $color-cherry-red;
 }
 
 .headline {
-    font-family: 'Eczar', serif;
-    font-weight: 600;
-    font-size: 80px;
-    line-height: 102%;
-    letter-spacing: -0.01em;
-    color: $color-tuna;
-    &--accent {
-      color: $color-jumbo;
-    }
-    @include sm {
-      font-size: 40px;
-      text-align: center;
-    }
+  font-family: 'Eczar', serif;
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 102%;
+  letter-spacing: -0.02em;
+  color: $color-tuna;
+  &--accent {
+    color: $color-jumbo;
+  }
+  @include sm {
+    font-size: 48px;
+    text-align: center;
+  }
 }
 </style>

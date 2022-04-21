@@ -2,6 +2,11 @@
     <div class="first-step-container">
         <h1 class="headline">Ahoy You! <br> <span class="headline--accent">Care to register?</span></h1>
         <form-card @submit.prevent.native="formSubmit">
+            <template #form-errors>
+                <base-alert v-if="error" type="error" @close="$emit('close')">
+                    User with provided email already exists! Try again
+               </base-alert> 
+            </template>
             <template #form-controls>
                 <div class="form-field">
                     <base-input v-model="email" @blur="validateEmail" inputLabel="email" :isInvalid="isEmailError" placeholder="Enter your email"/>
@@ -29,6 +34,12 @@ export default {
     components: {
         FormCard,
         PasswordInput
+    },
+    props: {
+        error: {
+            type: Boolean,
+            require: true
+        }
     },
     data() {
         return {
