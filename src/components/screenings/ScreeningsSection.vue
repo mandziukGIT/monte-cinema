@@ -1,18 +1,8 @@
 <template>
   <div class="screenings">
-    <div class="screenings__heading">
-      <p class="screenings__caption">Screenings:</p>
-      <p class="screenings__date">{{ dateDisplay }}</p>
-    </div>
     <div class="screenings__filtration">
-      <div class="screenings__date">
-        <p>day</p>
-        <date-filter @dateChange="setDate" />
-      </div>
-      <div class="screenings__category">
-        <p>movie</p>
-        <movie-filter @movieChange="setMovie" />
-      </div>
+      <date-filter @dateChange="setDate" />
+      <movie-filter @movieChange="setMovie" />
     </div>
     <div class="screenings__list">
       <screening-card
