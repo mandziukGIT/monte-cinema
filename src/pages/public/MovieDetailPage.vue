@@ -4,7 +4,7 @@
       <div class="movie__info">
         <h1 class="movie__title">{{ movie.title }}</h1>
         <div class="movie__details">
-          <base-chip>{{ movie.genre.name }}</base-chip>
+          <base-chip class="movie__genre">{{ movie.genre.name }}</base-chip>
           <p>{{ movieReleaseYear }}</p>
           <p>{{ movieLength }}</p>
         </div>
@@ -15,15 +15,17 @@
       </div>
     </div>
     <div class="movie__screenings">
-      <date-filter @dateChange="setFilter($event)" />
+      <div class="movie__date-filter">
+        <date-filter @dateChange="setFilter" sizeFixed />
+      </div>
       <screening-card :movie="movie" :filterBy="filterBy" />
     </div>
   </div>
 </template>
 <script>
-import { getFormattedDate, formatMovieLength } from "@/helpers/dateHelper";
-import DateFilter from "@/components/screenings/DateFilter.vue";
-import ScreeningCard from "@/components/screenings/ScreeningCard.vue";
+import { getFormattedDate, formatMovieLength } from '@/helpers/dateHelper';
+import DateFilter from '@/components/screenings/DateFilter.vue';
+import ScreeningCard from '@/components/screenings/ScreeningCard.vue';
 export default {
   components: { DateFilter, ScreeningCard },
   metaInfo() {
@@ -51,7 +53,7 @@ export default {
       return formatMovieLength(this.movie?.length);
     },
     movieReleaseYear() {
-      return this.movie?.release_date.split("-")[0];
+      return this.movie?.release_date.split('-')[0];
     },
     filterBy() {
       const date = !this.filterDate
@@ -66,6 +68,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .movie {
+  &__wrapper {
+    margin-top: 3em;
+  }
   &__overview {
     display: flex;
     @include md {
@@ -74,14 +79,17 @@ export default {
   }
   &__details {
     display: flex;
+    &:first-of-type {
+      padding-right: 10px;
+    }
     & > p {
-      font-family: "Roboto", sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-weight: 700;
       font-size: 14px;
       color: $color-jumbo;
       margin: auto 0;
       &:not(:last-child)::after {
-        content: "\00B7";
+        content: '\00B7';
         padding: 0.5rem;
       }
     }
@@ -90,7 +98,7 @@ export default {
     display: flex;
     flex-direction: column;
     & > p {
-      font-family: "RobotoMono", monospace;
+      font-family: 'RobotoMono', monospace;
       font-weight: 400;
       font-size: 22px;
       line-height: 170%;
@@ -112,6 +120,24 @@ export default {
         position: static;
       }
     }
+  }
+  &__title {
+    font-family: 'Eczar', serif;
+    font-weight: 600;
+    font-size: 80px;
+    margin-top: 0;
+  }
+  &__description {
+    padding: 2em 2em 2em 0;
+  }
+  &__genre {
+    margin-right: 1em;
+  }
+  &__screenings {
+    font-family: 'Eczar', serif;
+    font-weight: 600;
+    font-size: 32px;
+    overflow: auto;
   }
 }
 </style>

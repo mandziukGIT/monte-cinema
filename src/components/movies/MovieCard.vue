@@ -1,14 +1,18 @@
 <template>
-  <div class="movie__card">
-    <h2 class="movie__title">{{ movieTitle }}</h2>
-    <div>
-      <p class="movie__duration-time">{{ movieLength }}</p>
-      <img class="movie__poster" :src="moviePoster" />
-      <base-chip class="movie__category">
-        {{ movieCategory }}
-      </base-chip>
+  <router-link
+    :to="{ name: 'movie-detail-page', params: { movieId: movie.id } }"
+  >
+    <div class="movie__card">
+      <h2 class="movie__title">{{ movieTitle }}</h2>
+      <div>
+        <p class="movie__duration-time">{{ movieLength }}</p>
+        <img class="movie__poster" :src="moviePoster" />
+        <base-chip class="movie__category">
+          {{ movieCategory }}
+        </base-chip>
+      </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -41,6 +45,7 @@ export default {
 <style lang="scss" scoped>
 .movie {
   &__card {
+    height: 100%;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     display: flex;

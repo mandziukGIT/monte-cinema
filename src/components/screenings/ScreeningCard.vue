@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import { formatMovieLength } from "@/helpers/dateHelper";
-import api from "@/api/FactoryRepository";
-const seances = api.get("seances");
+import { formatMovieLength } from '@/helpers/dateHelper';
+import api from '@/api/FactoryRepository';
+const seances = api.get('seances');
 
 export default {
   props: {
@@ -58,9 +58,9 @@ export default {
     },
     getFormattedStartHour(seanceDate) {
       const date = new Date(seanceDate);
-      const hour = ("0" + date.getHours()).slice(-2);
-      const minutes = ("0" + date.getMinutes()).slice(-2);
-      return hour + ":" + minutes;
+      const hour = ('0' + date.getHours()).slice(-2);
+      const minutes = ('0' + date.getMinutes()).slice(-2);
+      return hour + ':' + minutes;
     },
   },
   computed: {
@@ -101,7 +101,7 @@ export default {
   &__info {
     display: flex;
     flex-direction: column;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 700;
     padding: 0 20px;
     &--title {
@@ -133,7 +133,7 @@ export default {
     &--seance {
       padding: 10px 30px;
       margin: 0 5px;
-      font-family: "RobotoMono", monospace;
+      font-family: 'RobotoMono', monospace;
       font-weight: 500;
       font-size: 14px;
       line-height: 100%;
