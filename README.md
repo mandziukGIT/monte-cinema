@@ -22,7 +22,7 @@ npm run lint
 
 ### Run all unit tests
 ```
-npm run test:units
+npm run test:unit
 ```
 
 ### Customize configuration
