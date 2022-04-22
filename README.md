@@ -1,7 +1,7 @@
 # monte-cinema-front
 
 ## Project setup
-```
+```Cancel changes
 npm install
 ```
 
@@ -18,6 +18,11 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
+
+### Run all unit tests
+```
+npm run test:units
 ```
 
 ### Customize configuration
