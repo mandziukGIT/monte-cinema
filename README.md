@@ -25,5 +25,7 @@ npm run lint
 npm run test:unit
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Backend 
+To work properly you need to run [montecinema API](https://github.com/monterail/monte-cinema) 
+Setup info inside the link
+
