@@ -73,6 +73,12 @@ export default {
   @include sm {
     font-size: 48px;
   }
+  &__caption {
+    color: $color-tuna;
+  }
+  &__date {
+    color: $color-bombay;
+  }
   &__filtration {
     display: flex;
     justify-content: space-between;
@@ -90,6 +96,13 @@ export default {
     p {
       @include text-label;
       padding: 10px 0;
+    }
+  }
+  &__date {
+    overflow: auto;
+    margin-right: 15px;
+    @include sm {
+      margin-right: 0px;
     }
   }
   &__heading,
