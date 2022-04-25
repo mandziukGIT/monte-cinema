@@ -1,5 +1,7 @@
 # monte-cinema-front
 
+# Tech stack: Vue 2 + TypeScript 
+
 ## Project setup
 ```Cancel changes
 npm install
