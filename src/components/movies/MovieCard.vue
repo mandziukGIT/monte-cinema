@@ -16,28 +16,19 @@
 </template>
 
 <script>
+import { toRefs, computed } from '@vue/composition-api';
 import { formatMovieLength } from '@/helpers/dateHelper';
 export default {
-  name: 'MovieCard',
-  props: {
-    movie: {
-      type: Object,
-      default: null,
-    },
-  },
-  computed: {
-    movieTitle() {
-      return this.movie?.title;
-    },
-    movieLength() {
-      return this.movie && formatMovieLength(this.movie.length);
-    },
-    moviePoster() {
-      return this.movie?.poster_url;
-    },
-    movieCategory() {
-      return this.movie?.genre?.name;
-    },
+  props: ['movie'],
+  setup(props) {
+    const { movie } = toRefs(props);
+    const movieTitle = computed(() => movie.value?.title);
+    const movieLength = computed(
+      () => movie && formatMovieLength(movie.value?.length)
+    );
+    const moviePoster = computed(() => movie.value?.poster_url);
+    const movieCategory = computed(() => movie.value?.genre?.name);
+    return { movieTitle, movieLength, moviePoster, movieCategory };
   },
 };
 </script>
