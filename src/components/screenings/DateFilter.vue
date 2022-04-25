@@ -1,8 +1,13 @@
 <template>
   <div class="date-filter">
     <div class="date-filter__date-display">
+<<<<<<< HEAD
       <p class="date-filter__caption">Screenings:</p>
       <p class="date-filter__date">{{ dateDisplay }}</p>
+=======
+      <p class="date-filter__date-display--caption">Screenings:</p>
+      <p class="date-filter__date-display--date">{{ dateDisplay }}</p>
+>>>>>>> development
     </div>
     <p class="date-filter__label">day</p>
     <div class="date-filter__list">
@@ -110,6 +115,7 @@ export default {
   flex-direction: column;
   &__date-display {
     padding: 0.5em 0;
+<<<<<<< HEAD
   }
   &__caption {
     color: $color-tuna;
@@ -120,6 +126,13 @@ export default {
     margin-right: 15px;
     @include sm {
       margin-right: 0px;
+=======
+    &--caption {
+      color: $color-tuna;
+    }
+    &--date {
+      color: $color-bombay;
+>>>>>>> development
     }
   }
   &__label {

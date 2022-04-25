@@ -9,8 +9,11 @@ import BaseButton from '@/components/UI/BaseButton'
 import BaseInput from '@/components/UI/BaseInput'
 import BaseChip from '@/components/UI/BaseChip'
 import BaseAlert from '@/components/UI/BaseAlert.vue'
+<<<<<<< HEAD
 import VueCompositionAPI from '@vue/composition-api'
 import 'vue-select/dist/vue-select.css';
+=======
+>>>>>>> development
 
 Vue.config.productionTip = false
 

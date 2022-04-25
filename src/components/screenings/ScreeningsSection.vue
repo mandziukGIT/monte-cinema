@@ -73,7 +73,6 @@ export default {
   @include sm {
     font-size: 48px;
   }
-
   &__filtration {
     display: flex;
     justify-content: space-between;
