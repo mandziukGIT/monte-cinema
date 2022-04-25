@@ -1,29 +1,43 @@
 <template>
-  <div class="movie__card">
-    <h2 class="movie__title">{{ movieTitle }}</h2>
-    <p class="movie__duration-time">{{ movieLength }}</p>
-    <img class="movie__poster" :src="moviePoster" />
-    <base-chip class="movie__category">
-      {{ movieCategory }}
-    </base-chip>
-  </div>
+  <router-link
+    :to="{ name: 'movie-detail-page', params: { movieId: movie.id } }"
+  >
+    <div class="movie__card">
+      <h2 class="movie__title">{{ movieTitle }}</h2>
+      <div>
+        <p class="movie__duration-time">{{ movieLength }}</p>
+        <img class="movie__poster" :src="moviePoster" />
+        <base-chip class="movie__category">
+          {{ movieCategory }}
+        </base-chip>
+      </div>
+    </div>
+  </router-link>
 </template>
 
 <script>
-import { toRefs, computed } from "@vue/composition-api";
-import { formatMovieLength } from "@/helpers/dateHelper";
-
+import { formatMovieLength } from '@/helpers/dateHelper';
 export default {
-  props: ["movie"],
-  setup(props) {
-    const { movie } = toRefs(props);
-    const movieTitle = computed(() => movie.value?.title);
-    const movieLength = computed(
-      () => movie && formatMovieLength(movie.value?.length)
-    );
-    const moviePoster = computed(() => movie.value?.poster_url);
-    const movieCategory = computed(() => movie.value?.genre?.name);
-    return { movieTitle, movieLength, moviePoster, movieCategory };
+  name: 'MovieCard',
+  props: {
+    movie: {
+      type: Object,
+      default: null,
+    },
+  },
+  computed: {
+    movieTitle() {
+      return this.movie?.title;
+    },
+    movieLength() {
+      return this.movie && formatMovieLength(this.movie.length);
+    },
+    moviePoster() {
+      return this.movie?.poster_url;
+    },
+    movieCategory() {
+      return this.movie?.genre?.name;
+    },
   },
 };
 </script>
@@ -31,7 +45,8 @@ export default {
 <style lang="scss" scoped>
 .movie {
   &__card {
-    font-family: "Roboto", sans-serif;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
     font-weight: 700;
     display: flex;
     flex-direction: column;

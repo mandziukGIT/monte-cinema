@@ -10,28 +10,31 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     movies: [],
+    genres: []
   },
   getters: {
-    movies(state) {
-      return state.movies
-    },
-    premieres(state) {
-      return state.movies.slice(0, 3)
-    },
-    movie: (state) => (payload) => {
-      return state.movies.find(movie => movie.id === payload.code)
-    }
+    movies: (state) => state.movies,
+    genres: (state) => state.genres,
+    premieres: (state) => state.movies.slice(0, 3),
+    movie: (state) => (payload) => state.movies.find(movie => movie.id === payload.code)
   },
   mutations: {
-    setMovies(state, payload) {
-      state.movies = payload
+    setMovies(state, movies) {
+      state.movies = movies
+    },
+    setGenres(state, genres) {
+      state.genres = genres
     }
   },
   actions: {
     async fetchMovies({commit}) {
-      const movies = await moviesApi.getMovies()
-      commit("setMovies", movies.data)
+      const { data: movies} = await moviesApi.getMovies()
+      commit("setMovies", movies)
     },
+    async fetchGenres({commit}) {
+      const { data: genres} = await moviesApi.getGenres()
+      commit("setGenres", genres)
+    }
   },
   modules: {
     user: userModule

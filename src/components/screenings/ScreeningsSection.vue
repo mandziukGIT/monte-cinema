@@ -1,18 +1,8 @@
 <template>
   <div class="screenings">
-    <div class="screenings__heading">
-      <p class="screenings__heading--caption">Screenings:</p>
-      <p class="screenings__heading--date">{{ dateDisplay }}</p>
-    </div>
     <div class="screenings__filtration">
-      <div class="screenings__filtration--date">
-        <p>day</p>
-        <date-filter @dateChange="setDate" />
-      </div>
-      <div class="screenings__filtration--category">
-        <p>movie</p>
-        <movie-filter @movieChange="setMovie" />
-      </div>
+      <date-filter @dateChange="setDate" />
+      <movie-filter @movieChange="setMovie" />
     </div>
     <div class="screenings__list">
       <screening-card
@@ -83,27 +73,13 @@ export default {
   @include sm {
     font-size: 48px;
   }
-  &__heading {
-    &--caption {
-      color: $color-tuna;
-    }
-    &--date {
-      color: $color-bombay;
-    }
-  }
+
   &__filtration {
     display: flex;
     justify-content: space-between;
     padding: 20px 0;
     @include md {
       flex-wrap: wrap;
-    }
-    &--date {
-      overflow: auto;
-      margin-right: 15px;
-      @include sm {
-        margin-right: 0px;
-      }
     }
     & > * {
       display: flex;
