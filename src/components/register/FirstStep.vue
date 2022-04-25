@@ -45,11 +45,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import FormCard from '@/components/FormCard.vue';
 import PasswordInput from '@/components/UI/PasswordInput.vue';
+import Vue from 'vue';
 
-export default {
+export default Vue.extend({
   components: {
     FormCard,
     PasswordInput,
@@ -86,14 +87,14 @@ export default {
       this.isFormSubmitted = true;
       this.validateEmail();
     },
-    setPasswordValidity(event) {
+    setPasswordValidity(event: boolean) {
       this.isPasswordError = event;
     },
   },
   computed: {
-    isFormValid() {
+    isFormValid(): boolean {
       return !this.isPasswordError && !this.isEmailError;
     },
   },
-};
+});
 </script>
