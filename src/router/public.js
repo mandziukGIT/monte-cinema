@@ -26,7 +26,7 @@ export default [{
   {
     path: '/account',
     component: () => import("@/pages/public/AccountPage.vue"),
-    redirect: { name: "login"},
+    redirect: { name: "login" },
     children: [
         {
             path: 'login',
