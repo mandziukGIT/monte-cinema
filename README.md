@@ -1,7 +1,5 @@
 # monte-cinema-front
 
-# Tech stack: Vue 2 + TypeScript 
-
 ## Project setup
 ```Cancel changes
 npm install
@@ -31,3 +29,5 @@ npm run test:unit
 To work properly you need to run [montecinema API](https://github.com/monterail/monte-cinema) 
 Setup info inside the link
 
+### Recommended IDE Setup
+VSCode + Vetur
