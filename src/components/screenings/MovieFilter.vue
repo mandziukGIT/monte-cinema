@@ -58,9 +58,12 @@ export default {
     border-top: 1px solid $color-whisper;
     box-shadow: none;
   }
+  &::v-deep .vs__search {
+    width: max-content;
+  }
 }
 .movie-filter {
-  flex-grow: 1;
+  width: 100%;
   align-self: end;
   p {
     padding: 10px 0;
