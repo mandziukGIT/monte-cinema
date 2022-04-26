@@ -9,9 +9,15 @@
           {{ $t('homepage.banner.text') }}
         </p>
       </div>
-      <base-button fontSize="22" buttonStyle="primary">
-        {{ $t('homepage.banner.button') }}
-      </base-button>
+      <base-button fontSize="22" buttonStyle="primary">{{
+        $t('homepage.banner.button')
+      }}</base-button>
+    </div>
+    <div class="homepage-banner__image">
+      <img
+        class="homepage-banner__image--image"
+        src="@/assets/images/banner.jpg"
+      />
     </div>
   </div>
 </template>

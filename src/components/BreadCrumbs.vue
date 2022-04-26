@@ -22,6 +22,10 @@
         <img src="@/assets/images/arrow-right-icon.svg" />
       </li>
     </ul>
+    <select v-model="$root.$i18n.locale">
+      <option value="en">English</option>
+      <option value="pl">Polish</option>
+    </select>
   </div>
 </template>
 
@@ -114,6 +118,10 @@ export default {
   @include sm {
     font-size: 12px;
     padding: 10px 2rem;
+  }
+  select {
+    margin-left: auto;
+    margin-right: 0;
   }
 }
 </style>
