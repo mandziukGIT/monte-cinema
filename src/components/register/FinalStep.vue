@@ -40,7 +40,7 @@
         </div>
         <label
           for="privacyPolicy"
-          :class="[{ 'input-caption--error': isInvalidPrivacyPolicy }]"
+          :class="[{ 'input-caption--error': isPrivacyPolicyError }]"
         >
           <input id="privacyPolicy" type="checkbox" v-model="isPPChecked" /> I
           accept Privacy Policy
@@ -65,65 +65,63 @@
 <script>
 import FormCard from '@/components/FormCard.vue';
 import { useValidate } from '@/composable/validation';
-import { ref } from '@vue/composition-api';
+import { ref, reactive } from '@vue/composition-api';
 
 export default {
-  setup() {
+  setup(props, { emit }) {
     const birthDate = ref('');
-    const { isBirthDateError, isFullAgeError, validateBirthDate } =
-      useValidate(birthDate);
-    return { isBirthDateError, isFullAgeError, validateBirthDate, birthDate };
+    const firstName = ref('');
+    const lastName = ref('');
+
+    const registerData = reactive({
+      first_name: firstName,
+      last_name: lastName,
+      date_of_birth: birthDate,
+    });
+
+    const {
+      isBirthDateError,
+      isFullAgeError,
+      isFirstNameError,
+      isLastNameError,
+      isPrivacyPolicyError,
+      validateBirthDate,
+      validateFirstName,
+      validateLastName,
+      isFormValid,
+      isSubmitted,
+      isPPChecked,
+    } = useValidate(birthDate, firstName, lastName);
+
+    function formSubmit() {
+      isSubmitted.value = true;
+      validateBirthDate();
+      validateFirstName();
+      validateLastName();
+      if (isFormValid.value) {
+        emit('registerFinalStepDone', registerData);
+      }
+    }
+
+    return {
+      isBirthDateError,
+      isFullAgeError,
+      isFirstNameError,
+      isLastNameError,
+      isPrivacyPolicyError,
+      isPPChecked,
+      validateBirthDate,
+      validateFirstName,
+      validateLastName,
+      firstName,
+      lastName,
+      birthDate,
+      isFormValid,
+      formSubmit,
+    };
   },
   components: {
     FormCard,
-  },
-  data() {
-    return {
-      firstName: '',
-      lastName: '',
-      isSubmitted: false,
-      isPPChecked: false,
-      isFirstNameError: false,
-      isLastNameError: false,
-    };
-  },
-  methods: {
-    formSubmit() {
-      const registerData = {
-        first_name: this.firstName,
-        last_name: this.lastName,
-        date_of_birth: this.birthDate,
-      };
-      this.validateForm();
-      if (this.isFormValid) {
-        this.$emit('registerFinalStepDone', registerData);
-      }
-    },
-    validateFirstName() {
-      this.isFirstNameError = !this.firstName;
-    },
-    validateLastName() {
-      this.isLastNameError = !this.lastName;
-    },
-    validateForm() {
-      this.isSubmitted = true;
-      this.validateBirthDate();
-      this.validateFirstName();
-      this.validateLastName();
-    },
-  },
-  computed: {
-    isFormValid() {
-      return (
-        !this.isBirthDateError &&
-        !this.isFirstNameError &&
-        !this.isLastNameError &&
-        !this.isInvalidPrivacyPolicy
-      );
-    },
-    isInvalidPrivacyPolicy() {
-      return this.isSubmitted && !this.isPPChecked;
-    },
   },
 };
 </script>

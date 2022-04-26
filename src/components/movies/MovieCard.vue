@@ -16,18 +16,23 @@
 </template>
 
 <script>
-import { toRefs, computed } from '@vue/composition-api';
+import { computed } from '@vue/composition-api';
 import { formatMovieLength } from '@/helpers/dateHelper';
 export default {
-  props: ['movie'],
+  props: {
+    movie: {
+      type: Object,
+      required: true,
+    },
+  },
   setup(props) {
-    const { movie } = toRefs(props);
-    const movieTitle = computed(() => movie.value?.title);
+    const { movie } = props;
+    const movieTitle = computed(() => movie?.title);
     const movieLength = computed(
-      () => movie && formatMovieLength(movie.value?.length)
+      () => movie && formatMovieLength(movie?.length)
     );
-    const moviePoster = computed(() => movie.value?.poster_url);
-    const movieCategory = computed(() => movie.value?.genre?.name);
+    const moviePoster = computed(() => movie?.poster_url);
+    const movieCategory = computed(() => movie?.genre?.name);
     return { movieTitle, movieLength, moviePoster, movieCategory };
   },
 };
