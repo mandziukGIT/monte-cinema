@@ -16,8 +16,32 @@ function loadLocaleMessages () {
   return messages
 }
 
+const dateTimeFormats = {
+  'en': {
+    '2-digit': {
+      month: '2-digit',
+      day: '2-digit',
+      year: 'numeric'
+    },
+    'weekday': {
+      weekday: 'short'
+    }
+  },
+  'pl': {
+    '2-digit': {
+      month: '2-digit',
+      day: '2-digit',
+      year: 'numeric'
+    },
+    'weekday': {
+      weekday: 'short'
+    }
+  }
+}
+
 export default new VueI18n({
   locale: process.env.VUE_APP_I18N_LOCALE || 'en',
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
-  messages: loadLocaleMessages()
+  messages: loadLocaleMessages(),
+  dateTimeFormats
 })

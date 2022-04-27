@@ -46,7 +46,6 @@ export default {
   font-size: 18px;
   margin-left: 0;
   width: 100%;
-
   &::v-deep .vs__dropdown-toggle {
     height: 100%;
   }
@@ -58,16 +57,19 @@ export default {
     border-top: 1px solid $color-whisper;
     box-shadow: none;
   }
+  &::v-deep .vs__search {
+    width: max-content;
+  }
 }
 .movie-filter {
-  flex-grow: 1;
+  width: 100%;
   align-self: end;
   p {
     padding: 10px 0;
     @include text-label;
   }
   margin-left: 10vw;
-  @include md {
+  @include lg {
     margin-left: 0;
   }
 }

@@ -5,5 +5,9 @@
       "text": "Best movies, best experiences, best people. And all that doesn't exist. Yikes.",
       "button": "Book a ticket"
     }
+  },
+  "dateFilter": {
+    "todayLabel": "Today",
+    "title": "Screenings:"
   }
 }

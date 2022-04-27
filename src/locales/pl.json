@@ -5,6 +5,10 @@
         "text": "Najlepsze filmy, najlepsze przezycia, najlepsi ludzie. A wszystko to nie istnieje. Ojej.",
         "button": "Rezerwuj bilet"
       }
+    },
+    "dateFilter": {
+      "todayLabel": "Dziś",
+      "title": "Repertuary na dzień:"
     }
   }
   
