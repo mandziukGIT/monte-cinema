@@ -1,23 +1,16 @@
 <template>
   <div class="date-filter">
     <div class="date-filter__date-display">
-      <p class="date-filter__date-display--caption">Screenings:</p>
-      <p class="date-filter__date-display--date">{{ dateDisplay }}</p>
+      <p class="date-filter__date-display--caption">
+        {{ this.$t('dateFilter.title') }}
+      </p>
+      <p class="date-filter__date-display--date">
+        {{ $d(dateFilter, '2-digit') }}
+      </p>
     </div>
     <p class="date-filter__label">day</p>
-    <div class="date-filter__list">
-      <div
-        class="date-filter__list__option"
-        :class="[
-          { 'date-filter__list__option--active': option.id === activeOptionId },
-          { responsive: !sizeFixed },
-        ]"
-        v-for="option in filterOptions"
-        :key="option.id"
-        @click="setActiveOption(option)"
-      >
-        {{ option.label }}
-      </div>
+    <div class="date-filter__options">
+      <date-options v-model="dateFilter" sizeFixed />
       <vc-date-picker
         class="date-filter__calendar"
         v-model="dateFilter"
@@ -39,15 +32,14 @@
   </div>
 </template>
 <script>
-import {
-  getDaysAhead,
-  getDayName,
-  getFormattedDate,
-} from '@/helpers/dateHelper';
+import DateOptions from './DateOptions.vue';
+
 export default {
+  components: { DateOptions },
   props: {
     sizeFixed: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
@@ -56,36 +48,7 @@ export default {
       dateFilter: new Date(),
     };
   },
-  methods: {
-    setActiveOption(option) {
-      this.activeOptionId = option.id;
-      this.dateFilter = option.date;
-    },
-    getFilterOptions() {
-      const daysAhead = getDaysAhead();
-      const filterOptions = daysAhead.map((day, index) => {
-        return {
-          id: day.getDate(),
-          label: !index ? 'Today' : getDayName(day, 'short'),
-          date: day,
-        };
-      });
-      this.setActiveOption(filterOptions[0]);
-      return filterOptions;
-    },
-    getScreeningsFormatDate(date) {
-      const dayName = getDayName(date, 'long');
-      const formattedDate = getFormattedDate(date);
-      return dayName + ' ' + formattedDate;
-    },
-  },
   computed: {
-    filterOptions() {
-      return this.getFilterOptions();
-    },
-    dateDisplay() {
-      return this.getScreeningsFormatDate(this.dateFilter);
-    },
     maxDate() {
       const date = new Date();
       return date.setDate(date.getDate() + 14);
@@ -95,8 +58,6 @@ export default {
     dateFilter: {
       immediate: true,
       handler(newVal) {
-        this.dateFilter = newVal;
-        this.activeOptionId = newVal.getDate();
         this.$emit('dateChange', newVal);
       },
     },
@@ -108,6 +69,7 @@ export default {
 .date-filter {
   display: flex;
   flex-direction: column;
+  overflow: auto;
   &__date-display {
     letter-spacing: -1%;
     padding: 0.5em 0;
@@ -122,33 +84,12 @@ export default {
     padding: 10px 0;
     @include text-label;
   }
-  &__list {
+
+  @include sm {
+    margin-right: 0px;
+  }
+  &__options {
     display: flex;
-    overflow: auto;
-    &__option {
-      font-family: 'RobotoMono', monospace;
-      font-weight: 500;
-      font-size: 18px;
-      line-height: 100%;
-      letter-spacing: 0.015em;
-      background-color: inherit;
-      color: $color-tuna;
-      border: 2px solid $color-tuna;
-      border-radius: 32px;
-      padding: 10px 35px;
-      margin: 0 5px;
-      &--active {
-        background-color: $color-tuna;
-        color: $color-snow-white;
-      }
-      @include xs {
-        padding: 5px 20px;
-        margin: 0 3px;
-      }
-      &:first-of-type {
-        margin-left: 0;
-      }
-    }
   }
   &__calendar {
     display: flex;
@@ -163,20 +104,6 @@ export default {
         margin: auto;
       }
     }
-  }
-  @include sm {
-    margin-right: 0px;
-  }
-}
-.responsive {
-  @include lg {
-    display: none;
-    &:nth-child(-n + 4) {
-      display: block;
-    }
-  }
-  @include md {
-    display: flex;
   }
 }
 </style>

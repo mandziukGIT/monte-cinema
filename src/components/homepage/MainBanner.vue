@@ -3,16 +3,15 @@
     <div class="homepage-banner__statement">
       <div class="homepage-banner__statement--wrapper">
         <h1 class="homepage-banner__statement--headline">
-          Welcome to the best cinema in Monterail
+          {{ $t('homepage.banner.title') }}
         </h1>
         <p class="homepage-banner__statement--paragraph">
-          Best movies, best experiences, best people. And all that doesn't
-          exist. Yikes.
+          {{ $t('homepage.banner.text') }}
         </p>
       </div>
-      <base-button fontSize="22" buttonStyle="primary"
-        >Book a ticket</base-button
-      >
+      <base-button fontSize="22" buttonStyle="primary">{{
+        $t('homepage.banner.button')
+      }}</base-button>
     </div>
     <div class="homepage-banner__image">
       <img

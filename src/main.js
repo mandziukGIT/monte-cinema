@@ -9,6 +9,7 @@ import BaseButton from '@/components/UI/BaseButton'
 import BaseInput from '@/components/UI/BaseInput'
 import BaseChip from '@/components/UI/BaseChip'
 import BaseAlert from '@/components/UI/BaseAlert.vue'
+import i18n from './i18n'
 
 Vue.config.productionTip = false
 
@@ -26,5 +27,6 @@ Vue.component('base-select', BaseSelect)
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

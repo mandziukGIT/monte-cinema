@@ -46,7 +46,6 @@ export default {
   font-size: 18px;
   margin-left: 0;
   width: 100%;
-
   &::v-deep .vs__dropdown-toggle {
     height: 100%;
   }
@@ -70,7 +69,7 @@ export default {
     @include text-label;
   }
   margin-left: 10vw;
-  @include md {
+  @include lg {
     margin-left: 0;
   }
 }

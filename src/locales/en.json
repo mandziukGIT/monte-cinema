@@ -1,0 +1,13 @@
+{
+  "homepage": {
+    "banner": {
+      "title": "Welcome to the best cinema in Monterail",
+      "text": "Best movies, best experiences, best people. And all that doesn't exist. Yikes.",
+      "button": "Book a ticket"
+    }
+  },
+  "dateFilter": {
+    "todayLabel": "Today",
+    "title": "Screenings:"
+  }
+}
