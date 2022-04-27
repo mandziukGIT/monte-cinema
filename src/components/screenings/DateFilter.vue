@@ -71,6 +71,7 @@ export default {
   flex-direction: column;
   overflow: auto;
   &__date-display {
+    letter-spacing: -1%;
     padding: 0.5em 0;
     &--caption {
       color: $color-tuna;
@@ -95,6 +96,7 @@ export default {
     border: 2px solid $color-tuna;
     border-radius: 32px;
     padding: 0 10px;
+    margin-left: 5px;
     &__toggle {
       display: inline-flex;
       height: 100%;
