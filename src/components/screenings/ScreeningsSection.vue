@@ -17,12 +17,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DateFilter from '@/components/screenings/DateFilter.vue';
 import MovieFilter from '@/components/screenings/MovieFilter.vue';
 import ScreeningCard from '@/components/screenings/ScreeningCard.vue';
 import { getDayName, getFormattedDate } from '@/helpers/dateHelper';
-export default {
+import { Movie, FilterBy } from '@/types';
+import Vue from 'vue';
+
+export default Vue.extend({
   components: {
     DateFilter,
     ScreeningCard,
@@ -35,34 +38,34 @@ export default {
     };
   },
   methods: {
-    setDate(event) {
+    setDate(event: Date) {
       this.dateFilter = event;
     },
-    setMovie(event) {
+    setMovie(event: string) {
       this.movieFilter = event;
     },
-    getScreeningsFormatDate(date) {
+    getScreeningsFormatDate(date: Date) {
       const dayName = getDayName(date, 'long');
       const formattedDate = getFormattedDate(date);
       return dayName + ' ' + formattedDate;
     },
   },
   computed: {
-    filterBy() {
+    filterBy(): FilterBy {
       return {
         date: getFormattedDate(this.dateFilter),
       };
     },
-    dateDisplay() {
+    dateDisplay(): string {
       return this.getScreeningsFormatDate(this.dateFilter);
     },
-    moviesList() {
+    moviesList(): Array<Movie> {
       return !this.movieFilter
         ? this.$store.getters.movies
         : [this.$store.getters.movie(this.movieFilter)];
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

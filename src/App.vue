@@ -17,7 +17,7 @@ import BreadCrumbs from '@/components/BreadCrumbs.vue';
 export default {
   name: 'App',
   metaInfo: {
-    title: null,
+    title: 'App',
     titleTemplate: '%s | Monte Cinema',
   },
   components: {

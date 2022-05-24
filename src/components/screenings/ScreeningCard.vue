@@ -22,25 +22,27 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue, { PropType } from 'vue';
 import { formatMovieLength } from '@/helpers/dateHelper';
+import { Movie, FilterBy, Seance } from '@/types';
 import api from '@/api/FactoryRepository';
 const seances = api.get('seances');
 
-export default {
+export default Vue.extend({
   props: {
     movie: {
-      type: Object,
+      type: Object as PropType<Movie>,
       default: null,
     },
     filterBy: {
-      type: Object,
+      type: Object as PropType<FilterBy>,
       default: null,
     },
   },
   data() {
     return {
-      movieSeances: [],
+      movieSeances: [] as Seance[],
     };
   },
   methods: {
@@ -51,7 +53,7 @@ export default {
       });
       this.movieSeances = data;
     },
-    getFormattedStartHour(seanceDate) {
+    getFormattedStartHour(seanceDate: string) {
       const date = new Date(seanceDate);
       const hour = ('0' + date.getHours()).slice(-2);
       const minutes = ('0' + date.getMinutes()).slice(-2);
@@ -59,7 +61,7 @@ export default {
     },
   },
   computed: {
-    movieLength() {
+    movieLength(): string {
       return formatMovieLength(this.movie.length);
     },
   },
@@ -71,7 +73,7 @@ export default {
       },
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
