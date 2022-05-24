@@ -9,24 +9,24 @@ export const getDaysAhead = () => {
     return dateArray;
 }
 
-function increaseDays (date, days) {
+function increaseDays (date: Date, days: number) {
     const d = new Date(date.valueOf());
     d.setDate(date.getDate() + days);
     return d;
   }
 
-export const getDayName = (date, length) => {
+export const getDayName = (date: Date, length: "long" | "short" | "narrow" | undefined) => {
     return date.toLocaleDateString('en-US', {weekday: length})
 }
 
-export const getFormattedDate = (date) => {
+export const getFormattedDate = (date: Date ) => {
     const day = ('0' + date.getDate()).slice(-2)
     const month = ('0' + (Number(date.getMonth()) + 1)).slice(-2)
     const year = date.getFullYear()
     return day + '-' + month + '-' + year
 }
 
-export const formatMovieLength = (movieLength) => {
+export const formatMovieLength = (movieLength: number) => {
     const hours = Math.floor(movieLength / 60);  
     const minutes = String('0' + (movieLength % 60)).slice(-2) + ' min'
     return hours + ":" + minutes
