@@ -1,5 +1,5 @@
 <template>
-  <div class="screening">
+  <div class="screening" v-if="!!movieSeances.length">
     <img class="screening__image" :src="movie.poster_url" />
     <div class="screening__info">
       <h1 class="screening__info--title">{{ movie.title }}</h1>
@@ -11,18 +11,13 @@
       </div>
     </div>
     <div class="screening__seances">
-      <template v-if="!!movieSeances.length">
-        <div
-          class="screening__seances--seance"
-          v-for="seance in movieSeances"
-          :key="seance.id"
-        >
-          {{ getFormattedStartHour(seance.datetime) }}
-        </div>
-      </template>
-      <template v-else>
-        <p>No screenings</p>
-      </template>
+      <div
+        class="screening__seances--seance"
+        v-for="seance in movieSeances"
+        :key="seance.id"
+      >
+        {{ getFormattedStartHour(seance.datetime) }}
+      </div>
     </div>
   </div>
 </template>

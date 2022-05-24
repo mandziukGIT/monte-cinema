@@ -1,7 +1,9 @@
 <template>
   <div class="screenings">
     <div class="screenings__filtration">
-      <date-filter @dateChange="setDate" />
+      <div class="screenings__date-filter">
+        <date-filter @dateChange="setDate" />
+      </div>
       <movie-filter @movieChange="setMovie" />
     </div>
     <div class="screenings__list">
@@ -102,7 +104,6 @@ export default Vue.extend({
     }
   }
   &__date {
-    overflow: auto;
     margin-right: 15px;
     @include sm {
       margin-right: 0px;
@@ -113,6 +114,9 @@ export default Vue.extend({
     @include xs {
       margin: 20px 2rem 20px 2rem;
     }
+  }
+  &__date-filter {
+    width: 100%;
   }
 }
 </style>

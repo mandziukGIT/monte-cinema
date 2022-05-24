@@ -126,6 +126,9 @@ export default {
     font-weight: 600;
     font-size: 80px;
     margin-top: 0;
+    @include sm {
+      font-size: 48px;
+    }
   }
   &__description {
     padding: 2em 2em 2em 0;

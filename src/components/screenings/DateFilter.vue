@@ -109,6 +109,7 @@ export default {
   display: flex;
   flex-direction: column;
   &__date-display {
+    letter-spacing: -1%;
     padding: 0.5em 0;
     &--caption {
       color: $color-tuna;
@@ -154,6 +155,7 @@ export default {
     border: 2px solid $color-tuna;
     border-radius: 32px;
     padding: 0 10px;
+    margin-left: 5px;
     &__toggle {
       display: inline-flex;
       height: 100%;
@@ -169,12 +171,12 @@ export default {
 .responsive {
   @include lg {
     display: none;
-    &:nth-child(-n + 3) {
+    &:nth-child(-n + 4) {
       display: block;
     }
   }
   @include md {
-    display: block;
+    display: flex;
   }
 }
 </style>
