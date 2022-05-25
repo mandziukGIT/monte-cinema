@@ -15,7 +15,8 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "vue-meta"
+      "vue-meta",
+      "jest"
     ],
     "paths": {
       "@/*": [
@@ -30,6 +31,7 @@
     ]
   },
   "include": [
+    "src/**/*",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",

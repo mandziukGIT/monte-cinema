@@ -1,6 +1,7 @@
 import { mount } from "@vue/test-utils"
-import ScreeningCard from '@/components/screenings/ScreeningCard'
-import Vue from 'vue';
+
+import ScreeningCard from '@/components/screenings/ScreeningCard.vue'
+import Vue from 'vue'; 
 
 import { getSeances } from "@/api/resources/SeancesRepository"
 
@@ -27,17 +28,19 @@ jest.mock('@/api/resources/SeancesRepository', () => ({
     getSeances: jest.fn()
 }));
 
-const createComponent = (options) =>  mount(ScreeningCard, options);
+const createComponent = (options: any) =>  mount(ScreeningCard, options);
 
 describe("screening card component", () => {
-
     it("hide if invalid props", () => {
-        const wrapper = createComponent()
+        const wrapper = createComponent({})
         expect(wrapper.find('screening').exists()).toBeFalsy()
     })
 
     it("show if valid props", async() => {
-        getSeances.mockImplementationOnce(() => Promise.resolve({ data: [seance] }));
+        console.log(getSeances)
+        const getSeances1 = getSeances as jest.Mock
+        console.log(getSeances1)
+        getSeances1.mockImplementationOnce(() => Promise.resolve({ data: [seance] }));
         const wrapper = createComponent({
             propsData: {
                 movie
