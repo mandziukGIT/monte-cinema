@@ -25,10 +25,10 @@ const seance = {
 }
 
 jest.mock('@/api/resources/SeancesRepository', () => ({
-    getSeances: jest.fn()
+    getSeances: jest.fn() 
 }));
 
-const createComponent = (options: any) =>  mount(ScreeningCard, options);
+const createComponent = (options: any) => mount(ScreeningCard, options);
 
 describe("screening card component", () => {
     it("hide if invalid props", () => {
@@ -37,10 +37,8 @@ describe("screening card component", () => {
     })
 
     it("show if valid props", async() => {
-        console.log(getSeances)
-        const getSeances1 = getSeances as jest.Mock
-        console.log(getSeances1)
-        getSeances1.mockImplementationOnce(() => Promise.resolve({ data: [seance] }));
+        const getSeancesMocked = getSeances as jest.Mock
+        getSeancesMocked.mockImplementationOnce(() => Promise.resolve({ data: [seance] }));
         const wrapper = createComponent({
             propsData: {
                 movie

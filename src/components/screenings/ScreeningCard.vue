@@ -46,6 +46,7 @@ export default Vue.extend({
   },
   methods: {
     async getFilteredSeances() {
+      if (!this.movie) return;
       const { data } = await seances.getSeances({
         movie_id: this.movie?.id,
         ...this.filterBy,
