@@ -13,7 +13,7 @@
 export default {
   data() {
     return {
-      movieFilter: '',
+      movieFilter: "",
     };
   },
   computed: {
@@ -29,7 +29,7 @@ export default {
   },
   watch: {
     movieFilter(newVal) {
-      this.$emit('movieChange', newVal);
+      this.$emit("movieChange", newVal);
     },
   },
 };
@@ -41,7 +41,7 @@ export default {
   padding: 6px 0;
   border-radius: 4px;
   background-color: $color-athens-gray;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 18px;
   margin-left: 0;

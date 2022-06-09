@@ -1,5 +1,5 @@
 import axios from 'axios';
-import store from "@/store"
+// import store from "@/store"
 import router from "@/router"
 
 const apiUrl = 'http://localhost:3000/';
@@ -14,7 +14,7 @@ axiosClient.interceptors.response.use(
     (response) => response,
     async (error) => {
       if (error.response.status === 401 && !(error.response.config.url === '/login')) {
-        await store.dispatch("user/logout");
+        // await store.dispatch("user/logout");
         router.push({ name: "login" });
       }
       return Promise.reject(error);
