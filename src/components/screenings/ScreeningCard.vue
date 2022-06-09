@@ -15,6 +15,7 @@
         class="screening__seances--seance"
         v-for="seance in movieSeances"
         :key="seance.id"
+        data-spec="hours"
       >
         {{ getFormattedStartHour(seance.datetime) }}
       </div>
