@@ -11,23 +11,24 @@
       </div>
     </div>
     <div class="screening__seances">
-      <div
-        class="screening__seances--seance"
-        v-for="seance in movieSeances"
-        :key="seance.id"
-      >
-        {{ getFormattedStartHour(seance.datetime) }}
+      <div v-for="seance in movieSeances" :key="seance.id">
+        <router-link
+          :to="{ name: 'choose-seats', params: { seanceId: seance.id } }"
+          class="screening__seances--seance"
+        >
+          {{ getFormattedStartHour(seance.datetime) }}
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
-import { formatMovieLength } from '@/helpers/dateHelper';
-import { Movie, FilterBy, Seance } from '@/types';
-import api from '@/api/FactoryRepository';
-const seances = api.get('seances');
+import Vue, { PropType } from "vue";
+import { formatMovieLength } from "@/helpers/dateHelper";
+import { Movie, FilterBy, Seance } from "@/types";
+import api from "@/api/FactoryRepository";
+const seances = api.get("seances");
 
 export default Vue.extend({
   props: {
@@ -55,9 +56,9 @@ export default Vue.extend({
     },
     getFormattedStartHour(seanceDate: string) {
       const date = new Date(seanceDate);
-      const hour = ('0' + date.getHours()).slice(-2);
-      const minutes = ('0' + date.getMinutes()).slice(-2);
-      return hour + ':' + minutes;
+      const hour = ("0" + date.getHours()).slice(-2);
+      const minutes = ("0" + date.getMinutes()).slice(-2);
+      return hour + ":" + minutes;
     },
   },
   computed: {
@@ -98,7 +99,7 @@ export default Vue.extend({
   &__info {
     display: flex;
     flex-direction: column;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 700;
     padding: 0 20px;
     &--title {
@@ -130,7 +131,7 @@ export default Vue.extend({
     &--seance {
       padding: 10px 30px;
       margin: 0 5px;
-      font-family: 'RobotoMono', monospace;
+      font-family: "RobotoMono", monospace;
       font-weight: 500;
       font-size: 14px;
       line-height: 100%;
