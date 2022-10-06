@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && pagecrypt dist/index.html dist/index.html qwerty",
+    "build": "vue-cli-service build && pagecrypt dist/index.html dist/index.html $PASSWORD",
     "test:unit": "jest",
     "lint": "vue-cli-service lint"
   },
